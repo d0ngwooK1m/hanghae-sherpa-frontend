@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Text = () => {
+const Text = (props) => {
   const { bold, color, size, children } = props;
 
   const styles = {
@@ -12,7 +12,7 @@ const Text = () => {
 
   return (
     <React.Fragment>
-      <p {...styles}>{children}</p>
+      <P {...styles}>{children}</P>
     </React.Fragment>
   );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Input = () => {
+const Input = (this.props.) => {
   const { width, height, type, placeholder, children, _onChange } = props;
 
   const styles = { width, height };
