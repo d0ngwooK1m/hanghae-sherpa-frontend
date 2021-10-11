@@ -12,7 +12,11 @@ const Grid = (props) => {
     bg: bg,
   };
 
-  return <React.Fragment></React.Fragment>;
+  return (
+    <React.Fragment>
+      <GridBox {...styles}>{children}</GridBox>
+    </React.Fragment>
+  );
 };
 
 Grid.defaultProps = {
