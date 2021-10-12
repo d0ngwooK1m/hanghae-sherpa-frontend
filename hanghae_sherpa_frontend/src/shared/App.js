@@ -8,9 +8,7 @@ import React from 'react';
 // import { apis } from '../lib/axios';
 
 // import SignupForm from '../components/SignupForm';
-import { SignupPage } from '../pages';
-import LoginForm from '../components/LoginForm';
-import LoginPage from '../pages/LoginPage';
+import { MainPage, SignupPage, LoginPage } from '../pages';
 
 function App() {
   // React.useEffect(() => {
@@ -24,6 +22,7 @@ function App() {
       <ConnectedRouter history={history}>
         <Route path='/' exact component={LoginPage} />
         <Route path='/signuppage' exact component={SignupPage} />
+        <Route path='/mainpage' exact component={MainPage} />
       </ConnectedRouter>
     </React.Fragment>
   );

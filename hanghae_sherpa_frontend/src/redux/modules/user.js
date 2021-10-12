@@ -19,10 +19,10 @@ const initialState = {
 const loginMiddleware = (loginInfo) => {
   return (history) => {
     apis
-      .signup(loginInfo)
+      .login(loginInfo)
       .then((res) => {
         console.log(res);
-        history.push('/');
+        // history.push('/');
       })
       .catch((err) => {
         console.log(err);
@@ -36,7 +36,7 @@ const signupMiddleware = (signupInfo) => {
       .signup(signupInfo)
       .then((res) => {
         console.log(res);
-        history.push('/');
+        // history.push('/');
       })
       .catch((err) => {
         console.log(err);
