@@ -19,7 +19,7 @@ const initialState = {
 const loginMiddleware = (loginInfo) => {
   return (history) => {
     apis
-      .signup(loginInfo)
+      .login(loginInfo)
       .then((res) => {
         console.log(res);
         history.push('/');

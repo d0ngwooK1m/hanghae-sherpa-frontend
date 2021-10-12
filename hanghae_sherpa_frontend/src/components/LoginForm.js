@@ -1,11 +1,12 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router';
 import { Text, Grid, Input, Button } from '../elements';
 import { userCreators } from '../redux/modules/user';
 
-const LoginForm = (props) => {
-  const { history } = props;
+const LoginForm = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const [userId, setUserId] = React.useState('');
   const [password, setPassword] = React.useState('');
@@ -52,7 +53,7 @@ const LoginForm = (props) => {
 
         <Button
           text='로그인하기'
-          _onChange={() => {
+          _onClick={() => {
             login();
           }}
         ></Button>

@@ -7,10 +7,7 @@ import { history } from '../redux/configureStore';
 import React from 'react';
 // import { apis } from '../lib/axios';
 
-// import SignupForm from '../components/SignupForm';
-import { SignupPage } from '../pages';
-import LoginForm from '../components/LoginForm';
-import LoginPage from '../pages/LoginPage';
+import { SignupPage, LoginPage } from '../pages';
 
 function App() {
   // React.useEffect(() => {

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { InputRange } from '/elements';
 import { useDispatch } from 'react-redux';
-import moment from 'moment';
 import { actionCreators } from '../redux/modules/date';
+import moment from 'moment';
 
 const TodoListInputForm = (props) => {
   const { history } = props;
@@ -27,12 +28,33 @@ const TodoListInputForm = (props) => {
   };
   return (
     <React.Fragment>
-      <form action='/action_page.php' method='get'>
-        <label for='vol'>완성도</label>
-        <input type='range' id='cnt' min='0' max='10' />
-      </form>
+      <Form>
+        <label>완성도</label>
+        <InputRange />
+      </Form>
+      <Form>
+        <label>창의성</label>
+        <InputRange />
+      </Form>
+      <Form>
+        <label>난이도</label>
+        <InputRange />
+      </Form>
+      <Form>
+        <label>집중도</label>
+        <InputRange />
+      </Form>
+      <Form>
+        <label>만족도</label>
+        <InputRange />
+      </Form>
     </React.Fragment>
   );
 };
+
+const Form = styled.form`
+  width: 100%;
+  margin: 0 auto;
+`;
 
 export default TodoListInputForm;
