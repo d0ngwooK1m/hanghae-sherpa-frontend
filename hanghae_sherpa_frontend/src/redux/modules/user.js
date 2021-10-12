@@ -16,13 +16,27 @@ const initialState = {
   is_login: false,
 };
 
+const loginMiddleware = (loginInfo) => {
+  return (history) => {
+    apis
+      .login(loginInfo)
+      .then((res) => {
+        console.log(res);
+        // history.push('/');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
 const signupMiddleware = (signupInfo) => {
   return (history) => {
     apis
       .signup(signupInfo)
       .then((res) => {
         console.log(res);
-        history.push('/');
+        // history.push('/');
       })
       .catch((err) => {
         console.log(err);
@@ -41,6 +55,8 @@ export default handleActions(
 
 const userCreators = {
   signupMiddleware,
+  loginMiddleware,
+  setUser,
 };
 
 export { userCreators };
