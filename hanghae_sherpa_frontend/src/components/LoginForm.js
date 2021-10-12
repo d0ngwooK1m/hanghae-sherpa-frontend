@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Text, Grid, Input, Button } from '../elements';
+import { userCreators } from '../redux/modules/user';
 
 const LoginForm = (props) => {
   const { history } = props;
@@ -14,11 +15,17 @@ const LoginForm = (props) => {
       window.alert('아이디 혹은 비밀번호가 공란입니다! 입력해주세요!');
       return;
     }
-    // dispatch(loginAction.loginDB(userId, password));
+
+    const loginInfo = {
+      userId: userId,
+      password: password,
+    };
+    dispatch(userCreators.loginMiddleware(loginInfo));
   };
+
   return (
     <React.Fragment>
-      <Grid padding='16px' width='360px' margin='auto'>
+      <Grid>
         <Text size='20px' bold text-align='center'>
           로그인
         </Text>
@@ -55,7 +62,7 @@ const LoginForm = (props) => {
           <Button
             btnName='cancle'
             text='회원가입'
-            _onClick={() => history.push('/SignupForm')}
+            _onClick={() => history.push('/SignupPage')}
           />
         </Text>
       </Grid>

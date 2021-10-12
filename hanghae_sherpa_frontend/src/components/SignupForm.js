@@ -7,6 +7,7 @@ import { Input, Button, Grid } from '../elements/index';
 
 const SignupForm = () => {
   const history = useHistory();
+  // const { history } = props;
   const dispatch = useDispatch();
   const [userId, setuserId] = React.useState('');
   const [nickname, setNickname] = React.useState('');
@@ -91,6 +92,7 @@ const SignupForm = () => {
             width='175px'
             margin='0px 0px 0px 5px'
             text='돌아가기'
+            _onClick={() => history.push('/')}
           ></Button>
         </Grid>
       </Grid>
