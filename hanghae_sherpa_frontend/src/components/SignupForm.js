@@ -3,7 +3,7 @@ import { useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { userCreators } from '../redux/modules/user';
 
-import { Input, Button, Text, Grid } from '../elements/index';
+import { Input, Button, Grid } from '../elements/index';
 
 const SignupForm = () => {
   const history = useHistory();
