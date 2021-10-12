@@ -8,7 +8,7 @@ import React from 'react';
 import { apis } from '../lib/axios';
 
 // import SignupForm from '../components/SignupForm';
-import { SignupPage } from '../pages';
+import { MainPage, SignupPage } from '../pages';
 import LoginForm from '../components/LoginForm';
 
 function App() {
@@ -23,6 +23,7 @@ function App() {
       <ConnectedRouter history={history}>
         <Route path='/' exact component={LoginForm} />
         <Route path='/signup' exact component={SignupPage} />
+        <Route path='/mainpage' exact component={MainPage} />
       </ConnectedRouter>
     </React.Fragment>
   );
