@@ -1,7 +1,7 @@
 import React from 'react';
 import { SignupForm, Frame } from '../components';
 
-import { Grid, Text } from '../elements';
+import { Text } from '../elements';
 
 const SignupPage = () => {
   return (
