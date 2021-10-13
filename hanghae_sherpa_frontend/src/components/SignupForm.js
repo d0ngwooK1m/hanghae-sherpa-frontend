@@ -23,6 +23,7 @@ const SignupForm = () => {
     };
 
     dispatch(userCreators.signupMiddleware(signupInfo));
+    history.push('/');
   };
 
   return (
