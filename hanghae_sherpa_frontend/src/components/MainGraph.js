@@ -1,53 +1,54 @@
-import React, { useState } from 'react';
-import * as d3 from 'd3';
+import React from 'react';
+import { ResponsiveLine } from '@nivo/line';
+import { useDispatch, useSelector } from 'react-redux';
+import { graphCreators } from '../redux/modules/graph';
+
+import { Grid } from '../elements';
 
 const MainGraph = () => {
-  // const [data1, setData1] = React.useState();
-  const [data] = useState([220, 100, 55, 115, 194, 210, 50]);
-  const svgRef = React.useRef();
+  const dispatch = useDispatch();
 
   React.useEffect(() => {
-    const w = 340;
-    const h = 250;
-    const svg = d3
-      .select(svgRef.current)
-      .attr('width', w)
-      .attr('height', h)
-      .style('background', 'aliceblue')
-      .style('margin-top', '50')
-      .style('overflow', 'visible');
+    dispatch(graphCreators.getGraphMiddleware());
+  }, []);
 
-    const xScale = d3
-      .scaleLinear()
-      .domain([0, data.length - 1])
-      .range([0, w]);
-    const yScale = d3.scaleLinear().domain([0, h]).range([h, 0]);
-    const generateScaledLine = d3
-      .line()
-      .x((d, i) => xScale(i))
-      .y(yScale)
-      .curve(d3.curveCardinal);
+  const data = useSelector((state) => state.graph.data);
+  console.log(data);
 
-    const xAxis = d3
-      .axisBottom(xScale)
-      .ticks(data.length)
-      .tickFormat((i) => i + 1);
-    const yAxis = d3.axisLeft(yScale).ticks(5);
-    svg.append('g').call(xAxis).attr('transform', `translate(0. ${h})`);
-    svg.append('g').call(yAxis);
-
-    svg
-      .selectAll('.line')
-      .data([data])
-      .join('path')
-      .attr('d', (d) => generateScaledLine(d))
-      .attr('fill', 'none')
-      .attr('stroke', 'black');
-  }, [data]);
-
+  const Tdata = [data[1]];
+  const Ydata = [data[0]];
   return (
     <React.Fragment>
-      <svg ref={svgRef}></svg>
+      <Grid width='340px' height='330px' position='relative' margin='auto'>
+        <Grid position='absolute' top='0px' zIndex='4' height='330px'>
+          <ResponsiveLine
+            data={Ydata}
+            colors={['#B6CFB4']}
+            areaOpacity={0.7}
+            // layers={['grid', 'axes', 'lines', 'markers', 'legends']}
+            margin={{ top: 50, right: 50, bottom: 50, left: 50 }}
+            enableArea={true}
+            enableGridX={false}
+            enableGridY={false}
+            curve='cardinal'
+          />
+        </Grid>
+        <Grid position='absolute' top='0px' zIndex='5' height='330px'>
+          <ResponsiveLine
+            data={Tdata}
+            colors={['#79FF71']}
+            areaOpacity={0.7}
+            margin={{ top: 50, right: 50, bottom: 50, left: 50 }}
+            axisLeft={null}
+            enableGridY={false}
+            axisBottom={null}
+            enableArea={true}
+            enableGridX={false}
+            enableGridY={false}
+            curve='cardinal'
+          />
+        </Grid>
+      </Grid>
     </React.Fragment>
   );
 };

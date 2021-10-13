@@ -22,6 +22,7 @@ const LoginForm = () => {
       password: password,
     };
     dispatch(userCreators.loginMiddleware(loginInfo));
+    history.push('/mainpage');
   };
 
   return (
@@ -55,7 +56,6 @@ const LoginForm = () => {
           text='로그인하기'
           _onClick={() => {
             login();
-            // history.push('/mainpage');
           }}
         ></Button>
 
