@@ -22,6 +22,7 @@ const LoginForm = () => {
       password: password,
     };
     dispatch(userCreators.loginMiddleware(loginInfo));
+    history.push('/mainpage');
   };
 
   return (
@@ -63,7 +64,9 @@ const LoginForm = () => {
           <Button
             btnName='cancle'
             text='회원가입'
-            _onClick={() => history.push('/SignupPage')}
+            _onClick={() => {
+              history.push('/signuppage');
+            }}
           />
         </Text>
       </Grid>

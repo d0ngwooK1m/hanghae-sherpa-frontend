@@ -17,12 +17,11 @@ const initialState = {
 };
 
 const loginMiddleware = (loginInfo) => {
-  return (history) => {
+  return () => {
     apis
       .login(loginInfo)
       .then((res) => {
         console.log(res);
-        history.push('/');
       })
       .catch((err) => {
         console.log(err);
@@ -31,12 +30,11 @@ const loginMiddleware = (loginInfo) => {
 };
 
 const signupMiddleware = (signupInfo) => {
-  return (history) => {
+  return () => {
     apis
       .signup(signupInfo)
       .then((res) => {
         console.log(res);
-        history.push('/');
       })
       .catch((err) => {
         console.log(err);
