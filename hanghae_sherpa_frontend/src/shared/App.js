@@ -9,8 +9,7 @@ import { useDispatch } from 'react-redux';
 import { apis } from '../lib/axios';
 import { graphCreators } from '../redux/modules/graph';
 
-// import SignupForm from '../components/SignupForm';
-import { MainPage, SignupPage, LoginPage } from '../pages';
+import { SignupPage, LoginPage, MainPage } from '../pages';
 
 function App() {
   // const dispatch = useDispatch();

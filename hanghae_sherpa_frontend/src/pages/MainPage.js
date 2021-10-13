@@ -1,19 +1,14 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { graphCreators } from '../redux/modules/graph';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { graphCreators } from '../redux/modules/graph';
 
-import { Frame, MainGraph } from '../components';
+import { Frame, MainGraph, TodoListForm } from '../components';
 
 const MainPage = () => {
-  // const dispatch = useDispatch();
-
-  // React.useEffect(() => {
-  //   dispatch(graphCreators.getGraphMiddleware());
-  // }, []);
-
   return (
     <React.Fragment>
       <Frame>
+        <TodoListForm />
         <MainGraph />
       </Frame>
     </React.Fragment>

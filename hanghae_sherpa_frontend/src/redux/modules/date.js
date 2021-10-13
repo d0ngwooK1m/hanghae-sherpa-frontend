@@ -1,5 +1,5 @@
 import { createAction, handleActions } from 'redux-actions';
-import moment from 'monent';
+import moment from 'moment';
 import produce from 'immer';
 
 // action type
@@ -32,7 +32,7 @@ export default handleActions(
   initialState
 );
 
-export const actionCreators = {
+export const dateCreators = {
   setCurrent,
   setNow,
 };

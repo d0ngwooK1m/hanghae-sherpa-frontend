@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router';
 import { Text, Grid, Input, Button } from '../elements';
 import { userCreators } from '../redux/modules/user';
-import { useHistory } from 'react-router';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
