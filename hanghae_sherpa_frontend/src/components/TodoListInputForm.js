@@ -1,53 +1,95 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { InputRange } from '/elements';
+import { InputRange, Button, InputDate } from '../elements';
+import { useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
-import { actionCreators } from '../redux/modules/date';
+import { todolistCreators } from '../redux/modules/todolist';
 import moment from 'moment';
 
-const TodoListInputForm = (props) => {
-  const { history } = props;
+const TodoListInputForm = () => {
+  const history = useHistory();
+  const dispatch = useDispatch();
   const [value, setValue] = useState({
     date: moment().format('YYYY-MM-DD'), // 오늘 날짜로 기본 설정
-    memo: '',
+    perpection: '',
+    creativity: '',
+    difficulty: '',
+    concentration: '',
+    satisfaction: '',
   });
 
-  const { date, memo } = value;
+  const {
+    date,
+    perpection,
+    creativity,
+    difficulty,
+    concentration,
+    satisfaction,
+  } = value;
 
   // 데이터 전송 함수
   const handleSubmit = (e) => {
-    // if ~가 빈 경우 return;
-
     // 원래는 firebase에 저장하기 위한 데이터 객체..
-    const todo1 = {
+    const AddInfo = {
       ...value,
-      memo,
       date: parseInt(date.split('-').join('')), // 날짜 형태 변경하여 저장.
       query: parseInt(date.slice(0, 5)),
+      perpection,
+      creativity,
+      difficulty,
+      concentration,
+      satisfaction,
     };
+
+    dispatch(todolistCreators.AddMiddleware(AddInfo));
+    history.replace('/mainpage');
   };
   return (
     <React.Fragment>
+      <InputDate></InputDate>
       <Form>
         <label>완성도</label>
-        <InputRange />
+        <InputRange
+          id='perpection'
+          value={perpection}
+          _onChange={(e) => setValue({ ...value, title: e.target.value })}
+        />
       </Form>
       <Form>
         <label>창의성</label>
-        <InputRange />
+        <InputRange
+          id='creativity'
+          value={creativity}
+          _onChange={(e) => setValue({ ...value, creat: e.target.value })}
+        />
       </Form>
       <Form>
         <label>난이도</label>
-        <InputRange />
+        <InputRange
+          id='difficulty'
+          value={difficulty}
+          _onChange={(e) => setValue({ ...value, dif: e.target.value })}
+        />
       </Form>
       <Form>
         <label>집중도</label>
-        <InputRange />
+        <InputRange
+          id='concentration'
+          value={concentration}
+          _onChange={(e) => setValue({ ...value, focus: e.target.value })}
+        />
       </Form>
       <Form>
         <label>만족도</label>
-        <InputRange />
+        <InputRange
+          id='satisfaction'
+          value={satisfaction}
+          _onChange={(e) =>
+            setValue({ ...value, satisfaction: e.target.value })
+          }
+        />
       </Form>
+      <Button text='저장' onClick={handleSubmit}></Button>
     </React.Fragment>
   );
 };
