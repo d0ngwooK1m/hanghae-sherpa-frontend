@@ -2,8 +2,8 @@ import React, { memo } from 'react';
 import styled, { css } from 'styled-components';
 import { Button, Grid } from '../elements';
 import { useDispatch, useSelector } from 'react-redux';
-import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
-import { dateCreators as dateActions } from '../redux/modules/date';
+// import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
+// import { dateCreators as dateActions } from '../redux/modules/date';
 import TodoListInputForm from './TodoListInputForm';
 
 const TodoListForm = memo((props) => {
