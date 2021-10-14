@@ -39,6 +39,6 @@ export const apis = {
   //메인페이지 관련 api
   //getInfo 쿼리로 날짜 데이터 전송
   // getInfo: () => instance.get('/mainpage/view'),
-  getInfo: () => instance.get('/main/view'),
+  getInfo: (date) => instance.get(`/main/view/${date}`),
   addInfo: (graphInfo) => instance.post('/main/post', graphInfo),
 };

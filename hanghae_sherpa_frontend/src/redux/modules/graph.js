@@ -66,10 +66,10 @@ const initialState = {
   is_updated: false,
 };
 
-const getGraphMiddleware = () => {
+const getGraphMiddleware = (date) => {
   return (dispatch) => {
     apis
-      .getInfo()
+      .getInfo(date)
       .then((res) => {
         console.log(res.data);
         const data = res.data;

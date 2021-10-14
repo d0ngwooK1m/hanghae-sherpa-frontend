@@ -1,6 +1,7 @@
 import { createAction, handleActions } from 'redux-actions';
 import produce from 'immer';
 import { apis } from '../../lib/axios';
+import { dispatch } from 'd3-dispatch';
 
 // action type
 const LOAD = 'LOAD';
@@ -12,7 +13,21 @@ const addSherpa = createAction(ADD, (todo) => ({ todo }));
 
 // initialState
 const initialState = {
-  todoList: [],
+  todoList: [
+    {
+      id: '',
+      date: 'yyyy-MM-dd',
+      todolist: [
+        {
+          perpeftion: '',
+          creativity: '',
+          difficulty: '',
+          concentration: '',
+          satisfaction: '',
+        },
+      ],
+    },
+  ],
 };
 
 // loadSherpaDB : 기존 값 불러오기
@@ -21,8 +36,10 @@ const loadMiddleware = (loadInfo) => {
     apis
       .login(loadInfo)
       .then((res) => {
-        console.log(res);
-        history.push('/');
+        console.log(res.todoList);
+        const todoList = res.todoList;
+        const todoListArr = [todoList.thesedayTodo, todoList.todo];
+        dispatch(loadSherpa(todoListArr));
       })
       .catch((err) => {
         console.log(err);
@@ -31,10 +48,10 @@ const loadMiddleware = (loadInfo) => {
 };
 
 // AddSherpaDB : 내용 추가
-const AddMiddleware = (AddInfo) => {
+const AddMiddleware = (addInfo) => {
   return (history) => {
     apis
-      .login(AddInfo)
+      .login(addInfo)
       .then((res) => {
         console.log(res);
         history.push('/');
@@ -50,8 +67,14 @@ const AddMiddleware = (AddInfo) => {
 // reducer
 export default handleActions(
   {
-    [LOAD]: (state, action) => produce(state, (draft) => {}),
-    [ADD]: (state, action) => produce(state, (draft) => {}),
+    [LOAD]: (state, action) =>
+      produce(state, (draft) => {
+        console.log(state);
+      }),
+    [ADD]: (state, action) =>
+      produce(state, (draft) => {
+        console.log(state);
+      }),
   },
   initialState
 );

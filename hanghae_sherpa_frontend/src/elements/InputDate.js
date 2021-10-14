@@ -1,8 +1,14 @@
 import React, { forwardRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import DatePicker from 'react-datepicker';
+import { todolistCreators } from '../redux/modules/todolist';
+import { Input } from '.';
 
 import 'react-datepicker/dist/react-datepicker.css';
+import { graphCreators } from '../redux/modules/graph';
+import moment from 'moment';
 
 // const InputDate = (props) => {
 //   const { type, _onChange } = props;
@@ -29,26 +35,34 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 // React Datepicker
 const InputDate = () => {
-  const [startDate, setStartDate] = useState(new Date());
-  const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
-    <button className='example-custom-input' onClick={onClick} ref={ref}>
-      {value}
-    </button>
-  ));
+  const dispatch = useDispatch();
+  const _is_updated = useSelector((state) => state.graph.is_updated);
+  console.log(_is_updated);
+
+  // const history = useHistory();
+
+  const [date, setDate] = useState(moment().format('YYYY-MM-DD'));
+  console.log(moment().format('YYYY-MM-DD'));
+  React.useEffect(() => {
+    dispatch(graphCreators.getGraphMiddleware(date));
+  }, [_is_updated]);
+
+  // 데이터를 로드받지 않으면 datepicker 날짜 비활성화.
+  // const handleDateSelect = () => {
+  //   if (todoList === '') {
+  //     alert('저장된 데이터가 없습니다.');
+  //     return;
+  //   }
+  //   dispatch(todolistCreators.loadMiddleware());
+  // };
+
   return (
-    <InputDatePicker
-      selected={startDate}
-      dateFormat='yyyy-MM-dd'
-      onChange={(date) => setStartDate(date)}
-      customInput={<ExampleCustomInput />}
-    />
+    <React.Fragment>
+      <Input type='date' _onChange={(e) => setDate(e.target.value)} />
+    </React.Fragment>
   );
 };
 
-const InputDatePicker = styled(DatePicker)`
-  margin='auto'
-  background='#216ba5'
-  color='#fff'
-`;
+InputDate.defaultProps = {};
 
 export default InputDate;
