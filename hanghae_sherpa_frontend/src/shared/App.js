@@ -24,8 +24,8 @@ function App() {
     <React.Fragment>
       <ConnectedRouter history={history}>
         <Route path='/' exact component={LoginPage} />
-        <Route path='/signuppage' exact component={SignupPage} />
-        <Route path='/mainpage' exact component={MainPage} />
+        <Route path='/signup' exact component={SignupPage} />
+        <Route path='/main' exact component={MainPage} />
       </ConnectedRouter>
     </React.Fragment>
   );

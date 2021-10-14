@@ -3,8 +3,10 @@ import produce from 'immer';
 import { apis } from '../../lib/axios';
 
 const GET_GRAPH = 'GET_GRAPH';
+const ADD_GRAPH_INFO = 'GET_GRAPH_INFO';
 
 const getGraph = createAction(GET_GRAPH, (data) => ({ data }));
+const addGraphInfo = createAction(ADD_GRAPH_INFO, (data) => ({ data }));
 
 const initialState = {
   data: [
@@ -61,6 +63,7 @@ const initialState = {
       ],
     },
   ],
+  is_updated: false,
 };
 
 const getGraphMiddleware = () => {
@@ -70,7 +73,23 @@ const getGraphMiddleware = () => {
       .then((res) => {
         console.log(res.data);
         const data = res.data;
-        dispatch(getGraph(data));
+        const dataArr = [data.yesterdayTodo, data.todo];
+        dispatch(getGraph(dataArr));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+const addGraphInfoMiddleware = (graphInfo) => {
+  return (dispatch) => {
+    apis
+      .addInfo(graphInfo)
+      .then((res) => {
+        console.log(res.data);
+        const data = res.data;
+        // dispatch(addGraphInfo(data));
       })
       .catch((err) => {
         console.log(err);
@@ -84,6 +103,12 @@ export default handleActions(
       produce(state, (draft) => {
         console.log(action.payload.data);
         draft.data = action.payload.data;
+        draft.is_updated = false;
+      }),
+    [ADD_GRAPH_INFO]: (state, action) =>
+      produce(state, (draft) => {
+        console.log(draft.is_updated);
+        draft.is_updated = true;
       }),
   },
   initialState
@@ -91,6 +116,7 @@ export default handleActions(
 
 const graphCreators = {
   getGraphMiddleware,
+  addGraphInfoMiddleware,
 };
 
 export { graphCreators };
