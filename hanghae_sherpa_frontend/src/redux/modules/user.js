@@ -17,11 +17,20 @@ const initialState = {
 };
 
 const loginMiddleware = (loginInfo) => {
-  return () => {
+  return (dispatch, getState, { history }) => {
     apis
       .login(loginInfo)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
+
+        let date = new Date();
+        date.setTime(date.getTime() + 3 * 60 * 60 * 1000);
+
+        document.cookie = `user=${
+          res.data.token
+        };expires=${date.toUTCString()};path=/`;
+        // console.log(document.cookie);
+        history.push('/main');
       })
       .catch((err) => {
         console.log(err);

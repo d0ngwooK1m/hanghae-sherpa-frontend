@@ -10,7 +10,8 @@ const TodoListInputForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [value, setValue] = useState({
-    date: moment().format('YYYY-MM-DD'), // 오늘 날짜로 기본 설정
+    // date: moment().format('YYYY-MM-DD'),
+    // 오늘 날짜로 기본 설정
     perpection: '',
     creativity: '',
     difficulty: '',
@@ -19,7 +20,7 @@ const TodoListInputForm = () => {
   });
 
   const {
-    date,
+    // date,
     perpection,
     creativity,
     difficulty,
@@ -32,8 +33,8 @@ const TodoListInputForm = () => {
     // 원래는 firebase에 저장하기 위한 데이터 객체..
     const AddInfo = {
       ...value,
-      date: parseInt(date.split('-').join('')), // 날짜 형태 변경하여 저장.
-      query: parseInt(date.slice(0, 5)),
+      // date: parseInt(date.split('-').join('')), // 날짜 형태 변경하여 저장.
+      // query: parseInt(date.slice(0, 5)),
       perpection,
       creativity,
       difficulty,
@@ -41,8 +42,12 @@ const TodoListInputForm = () => {
       satisfaction,
     };
 
-    dispatch(todolistCreators.AddMiddleware(AddInfo));
-    history.replace('/mainpage');
+    if (AddInfo.perpection === '') {
+      AddInfo.perpection = 0;
+    }
+    console.log(AddInfo.perpection);
+    // dispatch(todolistCreators.AddMiddleware(AddInfo));
+    // history.replace('/mainpage');
   };
   return (
     <React.Fragment>
@@ -52,7 +57,7 @@ const TodoListInputForm = () => {
         <InputRange
           id='perpection'
           value={perpection}
-          _onChange={(e) => setValue({ ...value, title: e.target.value })}
+          _onChange={(e) => setValue({ ...value, perpection: e.target.value })}
         />
       </Form>
       <Form>
@@ -60,7 +65,7 @@ const TodoListInputForm = () => {
         <InputRange
           id='creativity'
           value={creativity}
-          _onChange={(e) => setValue({ ...value, creat: e.target.value })}
+          _onChange={(e) => setValue({ ...value, creativity: e.target.value })}
         />
       </Form>
       <Form>
@@ -68,7 +73,7 @@ const TodoListInputForm = () => {
         <InputRange
           id='difficulty'
           value={difficulty}
-          _onChange={(e) => setValue({ ...value, dif: e.target.value })}
+          _onChange={(e) => setValue({ ...value, difficulty: e.target.value })}
         />
       </Form>
       <Form>
@@ -76,7 +81,9 @@ const TodoListInputForm = () => {
         <InputRange
           id='concentration'
           value={concentration}
-          _onChange={(e) => setValue({ ...value, focus: e.target.value })}
+          _onChange={(e) =>
+            setValue({ ...value, concentration: e.target.value })
+          }
         />
       </Form>
       <Form>
@@ -89,7 +96,7 @@ const TodoListInputForm = () => {
           }
         />
       </Form>
-      <Button text='저장' onClick={handleSubmit}></Button>
+      <Button text='저장' _onClick={handleSubmit}></Button>
     </React.Fragment>
   );
 };

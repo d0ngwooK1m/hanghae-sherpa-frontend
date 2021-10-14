@@ -21,8 +21,9 @@ const LoginForm = () => {
       userId: userId,
       password: password,
     };
+    console.log(loginInfo);
     dispatch(userCreators.loginMiddleware(loginInfo));
-    history.push('/mainpage');
+    // history.push('/mainpage');
   };
 
   return (
