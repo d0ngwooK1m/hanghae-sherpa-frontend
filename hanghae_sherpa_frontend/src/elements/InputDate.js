@@ -37,15 +37,16 @@ import moment from 'moment';
 const InputDate = () => {
   const dispatch = useDispatch();
   const _is_updated = useSelector((state) => state.graph.is_updated);
-  console.log(_is_updated);
+  // console.log(_is_updated);
 
   // const history = useHistory();
 
   const [date, setDate] = useState(moment().format('YYYY-MM-DD'));
-  console.log(moment().format('YYYY-MM-DD'));
+  // console.log(moment().format('YYYY-MM-DD'));
   React.useEffect(() => {
     dispatch(graphCreators.getGraphMiddleware(date));
-  }, [_is_updated]);
+    dispatch(graphCreators.updateDate(date));
+  }, [_is_updated, date]);
 
   // 데이터를 로드받지 않으면 datepicker 날짜 비활성화.
   // const handleDateSelect = () => {
@@ -58,7 +59,13 @@ const InputDate = () => {
 
   return (
     <React.Fragment>
-      <Input type='date' _onChange={(e) => setDate(e.target.value)} />
+      <Input
+        type='date'
+        _onChange={(e) => {
+          setDate(e.target.value);
+        }}
+        value={date}
+      />
     </React.Fragment>
   );
 };

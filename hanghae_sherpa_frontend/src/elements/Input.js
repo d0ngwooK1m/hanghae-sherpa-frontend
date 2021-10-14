@@ -2,7 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Input = (props) => {
-  const { width, height, type, placeholder, children, _onChange } = props;
+  const {
+    width,
+    height,
+    type,
+    placeholder,
+    children,
+    _onChange,
+    _onClick,
+    value,
+  } = props;
 
   const styles = { width, height };
 
@@ -13,8 +22,10 @@ const Input = (props) => {
         <InputElem
           {...styles}
           onChange={_onChange}
+          onClick={_onClick}
           placeholder={placeholder}
           type={type}
+          value={value}
         />
       </label>
     </React.Fragment>
@@ -27,6 +38,8 @@ Input.defaultProps = {
   type: 'text',
   placeholder: '문구를 입력해 주세요',
   _onChange: () => {},
+  _onClick: () => {},
+  value: '',
 };
 
 const InputElem = styled.input`

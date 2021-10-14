@@ -61,5 +61,5 @@ export const apis = {
   //getInfo 쿼리로 날짜 데이터 전송
   // getInfo: () => instance.get('/mainpage/view'),
   getInfo: (date) => instance.get(`/main/view/${date}`),
-  addInfo: (graphInfo) => instance.post('/main/post', graphInfo),
+  addInfo: (graphInfo, date) => instance.post(`/main/post/${date}`, graphInfo),
 };
