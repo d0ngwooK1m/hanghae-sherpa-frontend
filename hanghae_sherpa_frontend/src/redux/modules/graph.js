@@ -15,23 +15,23 @@ const initialState = {
       date: '2021-10-11',
       data: [
         {
-          x: '항목1',
+          x: '완성도',
           y: 0,
         },
         {
-          x: '항목2',
+          x: '창의성',
           y: 0,
         },
         {
-          x: '항목3',
+          x: '난이도',
           y: 0,
         },
         {
-          x: '항목4',
+          x: '집중도',
           y: 0,
         },
         {
-          x: '항목5',
+          x: '만족도',
           y: 0,
         },
       ],
@@ -41,23 +41,23 @@ const initialState = {
       date: '2021-10-12',
       data: [
         {
-          x: '항목1',
+          x: '완성도',
           y: 0,
         },
         {
-          x: '항목2',
+          x: '창의성',
           y: 0,
         },
         {
-          x: '항목3',
+          x: '난이도',
           y: 0,
         },
         {
-          x: '항목4',
+          x: '집중도',
           y: 0,
         },
         {
-          x: '항목5',
+          x: '만족도',
           y: 0,
         },
       ],
@@ -74,10 +74,11 @@ const getGraphMiddleware = (date) => {
         console.log(res.data);
         const data = res.data;
         const dataArr = [data.yesterdayTodo, data.todo];
+        console.log(dataArr);
         dispatch(getGraph(dataArr));
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
 };
@@ -89,7 +90,7 @@ const addGraphInfoMiddleware = (graphInfo) => {
       .then((res) => {
         console.log(res.data);
         const data = res.data;
-        // dispatch(addGraphInfo(data));
+        dispatch(addGraphInfo(data));
       })
       .catch((err) => {
         console.log(err);
@@ -103,7 +104,9 @@ export default handleActions(
       produce(state, (draft) => {
         console.log(action.payload.data);
         draft.data = action.payload.data;
-        draft.is_updated = false;
+        if (draft.is_updated === true) {
+          draft.is_updated = false;
+        }
       }),
     [ADD_GRAPH_INFO]: (state, action) =>
       produce(state, (draft) => {

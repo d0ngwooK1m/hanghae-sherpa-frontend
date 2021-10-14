@@ -1,6 +1,7 @@
 import { createAction, handleActions } from 'redux-actions';
 import { produce } from 'immer';
 import { apis } from '../../lib/axios';
+import moment from 'moment';
 
 // const LOG_OUT = 'LOG_OUT';
 // const GET_USER = 'GET_USER';
@@ -30,10 +31,12 @@ const loginMiddleware = (loginInfo) => {
           res.data.token
         };expires=${date.toUTCString()};path=/`;
         // console.log(document.cookie);
-        history.push('/main');
+        console.log(moment().format('YYYY-MM-DD'));
+        const dateNow = moment().format('YYYY-MM-DD');
+        history.push('/main/' + dateNow);
       })
       .catch((err) => {
-        console.log(err);
+        return console.log(err);
       });
   };
 };

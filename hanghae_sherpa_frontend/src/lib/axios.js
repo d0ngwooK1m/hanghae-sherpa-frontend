@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { history } from '../redux/configureStore';
 
 // axios.defaults.withCredentials = true;
 
@@ -15,8 +16,11 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use(
-  async (config) => {
-    const cookie = await document.cookie;
+  (config) => {
+    const cookie = document.cookie;
+    if (cookie === '') {
+      return config;
+    }
     const cookieSplit = cookie.split('=')[1];
     console.log(cookieSplit);
 
@@ -29,6 +33,23 @@ instance.interceptors.request.use(
   },
   (err) => {
     console.log(err);
+  }
+);
+
+instance.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    // const { status, data, config } = error.response;
+    // console.log(status);
+    console.log(error.response.status);
+
+    if (error.response.status === 401) {
+      console.log('asdfasdf');
+      history.push('/');
+    }
+    return error;
   }
 );
 
