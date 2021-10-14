@@ -7,10 +7,12 @@ import { Grid } from '../elements';
 
 const MainGraph = () => {
   const dispatch = useDispatch();
+  const _is_updated = useSelector((state) => state.graph.is_updated);
+  console.log(_is_updated);
 
   React.useEffect(() => {
     dispatch(graphCreators.getGraphMiddleware());
-  }, []);
+  }, [_is_updated]);
 
   const data = useSelector((state) => state.graph.data);
   console.log(data);
@@ -30,7 +32,7 @@ const MainGraph = () => {
             enableArea={true}
             enableGridX={false}
             enableGridY={false}
-            curve='cardinal'
+            curve='stepBefore'
           />
         </Grid>
         <Grid position='absolute' top='0px' zIndex='5' height='330px'>
@@ -45,7 +47,7 @@ const MainGraph = () => {
             enableArea={true}
             enableGridX={false}
             enableGridY={false}
-            curve='cardinal'
+            curve='stepBefore'
           />
         </Grid>
       </Grid>
