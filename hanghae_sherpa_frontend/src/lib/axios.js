@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { history } from '../redux/configureStore';
 
 // axios.defaults.withCredentials = true;
 
@@ -15,8 +16,11 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use(
-  async (config) => {
-    const cookie = await document.cookie;
+  (config) => {
+    const cookie = document.cookie;
+    if (cookie === '') {
+      return config;
+    }
     const cookieSplit = cookie.split('=')[1];
     console.log(cookieSplit);
 
@@ -32,6 +36,23 @@ instance.interceptors.request.use(
   }
 );
 
+instance.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    // const { status, data, config } = error.response;
+    // console.log(status);
+    console.log(error.response.status);
+
+    if (error.response.status === 401) {
+      console.log('asdfasdf');
+      history.push('/');
+    }
+    return error;
+  }
+);
+
 export const apis = {
   //회원가입 및 로그인 관련 api
   login: (loginInfo) => instance.post('/user/login', loginInfo),
@@ -39,6 +60,6 @@ export const apis = {
   //메인페이지 관련 api
   //getInfo 쿼리로 날짜 데이터 전송
   // getInfo: () => instance.get('/mainpage/view'),
-  getInfo: () => instance.get('/main/view'),
+  getInfo: (date) => instance.get(`/main/view/${date}`),
   addInfo: (graphInfo) => instance.post('/main/post', graphInfo),
 };
