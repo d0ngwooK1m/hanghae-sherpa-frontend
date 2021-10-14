@@ -41,8 +41,13 @@ const TodoListInputForm = () => {
       satisfaction,
     };
 
-    dispatch(todolistCreators.AddMiddleware(AddInfo));
-    history.replace('/mainpage');
+    if (perpection === '') {
+      AddInfo.perpection = 0;
+    }
+    console.log(AddInfo.perpection);
+
+    // dispatch(todolistCreators.AddMiddleware(AddInfo));
+    // history.replace('/mainpage');
   };
   return (
     <React.Fragment>
@@ -52,7 +57,7 @@ const TodoListInputForm = () => {
         <InputRange
           id='perpection'
           value={perpection}
-          _onChange={(e) => setValue({ ...value, title: e.target.value })}
+          _onChange={(e) => setValue({ ...value, perpection: e.target.value })}
         />
       </Form>
       <Form>
@@ -60,7 +65,7 @@ const TodoListInputForm = () => {
         <InputRange
           id='creativity'
           value={creativity}
-          _onChange={(e) => setValue({ ...value, creat: e.target.value })}
+          _onChange={(e) => setValue({ ...value, creativity: e.target.value })}
         />
       </Form>
       <Form>
@@ -68,7 +73,7 @@ const TodoListInputForm = () => {
         <InputRange
           id='difficulty'
           value={difficulty}
-          _onChange={(e) => setValue({ ...value, dif: e.target.value })}
+          _onChange={(e) => setValue({ ...value, difficulty: e.target.value })}
         />
       </Form>
       <Form>
@@ -76,7 +81,9 @@ const TodoListInputForm = () => {
         <InputRange
           id='concentration'
           value={concentration}
-          _onChange={(e) => setValue({ ...value, focus: e.target.value })}
+          _onChange={(e) =>
+            setValue({ ...value, concentration: e.target.value })
+          }
         />
       </Form>
       <Form>
