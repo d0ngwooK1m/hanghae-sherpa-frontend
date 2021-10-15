@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { graphCreators } from '../redux/modules/graph';
 
-import { Frame, MainGraph, TodoListForm } from '../components';
+import { Frame, MainGraph, TodoListInputForm, MainHeader } from '../components';
 
 const MainPage = () => {
   // const dispatch = useDispatch();
@@ -15,7 +15,8 @@ const MainPage = () => {
   return (
     <React.Fragment>
       <Frame>
-        <TodoListForm />
+        <MainHeader />
+        <TodoListInputForm />
         <MainGraph />
       </Frame>
     </React.Fragment>
