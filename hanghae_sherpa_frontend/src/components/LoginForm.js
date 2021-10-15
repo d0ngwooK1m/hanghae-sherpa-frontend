@@ -66,7 +66,7 @@ const LoginForm = () => {
             btnName='cancle'
             text='회원가입'
             _onClick={() => {
-              history.push('/signuppage');
+              history.push('/signup');
             }}
           />
         </Text>

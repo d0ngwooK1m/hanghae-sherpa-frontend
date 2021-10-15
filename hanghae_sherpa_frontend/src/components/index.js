@@ -5,6 +5,7 @@ import MainGraph from './MainGraph';
 import TodoListForm from './TodoListForm';
 import MypageGraph from './MypageGraph';
 import MypageText from './MypageText';
+import MypageHeader from './MypageHeader';
 
 export {
   LoginForm,
@@ -14,4 +15,5 @@ export {
   TodoListForm,
   MypageGraph,
   MypageText,
+  MypageHeader,
 };
