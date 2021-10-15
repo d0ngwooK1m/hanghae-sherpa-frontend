@@ -20,7 +20,7 @@ const MypageGraph = () => {
       <Grid width='340px' height='330px' margin='auto'>
         <ResponsiveLine
           data={data}
-          margin={{ top: 20, right: 100, bottom: 20, left: 20 }}
+          margin={{ top: 20, right: 100, bottom: 20, left: 30 }}
           xScale={{ type: 'point' }}
           yScale={{
             type: 'linear',
