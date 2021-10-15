@@ -4,5 +4,14 @@ import Frame from './Frame';
 import MainGraph from './MainGraph';
 import TodoListForm from './TodoListForm';
 import MypageGraph from './MypageGraph';
+import MypageText from './MypageText';
 
-export { LoginForm, SignupForm, Frame, MainGraph, TodoListForm, MypageGraph };
+export {
+  LoginForm,
+  SignupForm,
+  Frame,
+  MainGraph,
+  TodoListForm,
+  MypageGraph,
+  MypageText,
+};

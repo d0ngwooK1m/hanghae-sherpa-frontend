@@ -1,10 +1,13 @@
 import axios from 'axios';
 import { history } from '../redux/configureStore';
+import { useDispatch } from 'react-redux';
+import { graphCreators } from '../redux/modules/graph';
+import moment from 'moment';
 
 // axios.defaults.withCredentials = true;
 
 const instance = axios.create({
-  // baseURL: 'http://localhost:3000/',
+  // baseURL: 'http://localhost:4000/',
   baseURL: 'http://13.125.174.214/',
   headers: {
     'content-type': 'application/json;charset=UTF-8',
@@ -55,9 +58,10 @@ instance.interceptors.response.use(
       error.response.status === 400 &&
       error.response.data.msg === '데이터가 없습니다.'
     ) {
-      console.log(error.response.data.msg);
+      // console.log(error.response.data.msg);
       alert('저장된 데이터가 없습니다.');
-      history.replace('/main');
+      // history.replace('/main');
+      window.location.href = '/main';
     }
     return error;
   }
@@ -71,5 +75,6 @@ export const apis = {
   //getInfo 쿼리로 날짜 데이터 전송
   // getInfo: () => instance.get('/mainpage/view'),
   getInfo: (date) => instance.get(`/main/view/${date}`),
+  getMypageInfo: () => instance.get('/mypage/view'),
   addInfo: (graphInfo, date) => instance.post(`/main/post/${date}`, graphInfo),
 };
