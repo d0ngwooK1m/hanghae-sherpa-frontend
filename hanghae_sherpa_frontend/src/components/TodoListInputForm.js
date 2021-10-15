@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { InputRange, Button, InputDate } from '../elements';
+import { InputRange, Button, InputDate, RangeSlider } from '../elements';
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { todolistCreators } from '../redux/modules/todolist';
@@ -170,12 +170,11 @@ const TodoListInputForm = () => {
         width='100%'
         text='저장'
         _onClick={() => {
-          // if (date === today) {
-          //   handleSubmit();
-          // } else {
-          //   alert('지난 일을 수정할 수 없어요!');
-          // }
-          handleSubmit();
+          if (date === today) {
+            return handleSubmit();
+          } else {
+            return alert('지난 일을 수정할 수 없어요!');
+          }
         }}
       ></Button>
     </React.Fragment>
@@ -185,7 +184,7 @@ const TodoListInputForm = () => {
 const Form = styled.form`
   width: 100%;
   margin: 4px auto;
-  height: 40px;
+  height: 30px;
   text-align: center;
 `;
 

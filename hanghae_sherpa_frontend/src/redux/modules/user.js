@@ -30,9 +30,7 @@ const loginMiddleware = (loginInfo) => {
         document.cookie = `user=${
           res.data.token
         };expires=${date.toUTCString()};path=/`;
-        // console.log(document.cookie);
-        console.log(moment().format('YYYY-MM-DD'));
-        const dateNow = moment().format('YYYY-MM-DD');
+
         history.push('/main');
       })
       .catch((err) => {
