@@ -4,12 +4,12 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 import { history } from '../redux/configureStore';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 
-import { apis } from '../lib/axios';
-import { graphCreators } from '../redux/modules/graph';
+// import { apis } from '../lib/axios';
+// import { graphCreators } from '../redux/modules/graph';
 
-import { SignupPage, LoginPage, MainPage } from '../pages';
+import { SignupPage, LoginPage, MainPage, MyPage } from '../pages';
 
 function App() {
   // const dispatch = useDispatch();
@@ -26,6 +26,7 @@ function App() {
         <Route path='/' exact component={LoginPage} />
         <Route path='/signup' exact component={SignupPage} />
         <Route path='/main' exact component={MainPage} />
+        <Route path='/mypage' exact component={MyPage} />
       </ConnectedRouter>
     </React.Fragment>
   );
