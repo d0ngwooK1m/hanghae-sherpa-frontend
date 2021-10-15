@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Button = (props) => {
-  const { text, width, margin, _onClick } = props;
+  const { text, width, height, margin, _onClick } = props;
 
   const styles = {
     width: width,
@@ -11,7 +11,7 @@ const Button = (props) => {
 
   return (
     <React.Fragment>
-      <ElButton {...styles} onClick={_onClick}>
+      <ElButton {...styles} height={height} onClick={_onClick}>
         {text}
       </ElButton>
     </React.Fragment>
@@ -21,6 +21,7 @@ const Button = (props) => {
 Button.defaultProps = {
   text: '텍스트',
   width: '100%',
+  height: '45px',
   margin: null,
   _onClick: () => {},
 };

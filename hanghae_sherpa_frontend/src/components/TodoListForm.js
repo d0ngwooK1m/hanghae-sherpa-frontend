@@ -54,10 +54,7 @@ const Header = styled.div`
       ${flexBox}
       position: relative;
       justify-content: flex-end;
-      height: 280px;
-      border-bottom: 2px solid;
-      padding: 10px 5px;
-
+      height: 300px;
       }
     `;
   }}

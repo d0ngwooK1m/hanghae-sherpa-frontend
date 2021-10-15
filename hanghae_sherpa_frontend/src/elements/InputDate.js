@@ -64,6 +64,8 @@ const InputDate = () => {
         _onChange={(e) => {
           setDate(e.target.value);
         }}
+        width='40%'
+        height='42px'
         value={date}
       />
     </React.Fragment>

@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { todolistCreators } from '../redux/modules/todolist';
 import { graphCreators } from '../redux/modules/graph';
 import moment from 'moment';
+import DetailBtn from '../elements/DetailBtn';
+import LogoutBtn from '../elements/LogoutBtn';
 
 const TodoListInputForm = () => {
   const history = useHistory();
@@ -100,7 +102,11 @@ const TodoListInputForm = () => {
 
   return (
     <React.Fragment>
-      <InputDate></InputDate>
+      <div>
+        <InputDate width='50%' />
+        <LogoutBtn />
+        <DetailBtn />
+      </div>
       <Form>
         <label>완성도: {perfection}</label>
         <InputRange
@@ -161,6 +167,7 @@ const TodoListInputForm = () => {
         />
       </Form>
       <Button
+        width='100%'
         text='저장'
         _onClick={() => {
           // if (date === today) {
@@ -177,7 +184,9 @@ const TodoListInputForm = () => {
 
 const Form = styled.form`
   width: 100%;
-  margin: 0 auto;
+  margin: 4px auto;
+  height: 40px;
+  text-align: center;
 `;
 
 export default TodoListInputForm;
