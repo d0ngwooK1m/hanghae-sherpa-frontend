@@ -17,17 +17,30 @@ const Input = (props) => {
 
   return (
     <React.Fragment>
-      <label {...styles}>
-        {children}
-        <InputElem
-          {...styles}
-          onChange={_onChange}
-          onClick={_onClick}
-          placeholder={placeholder}
-          type={type}
-          value={value}
-        />
-      </label>
+      {type === 'date' ? (
+        <label {...styles}>
+          {children}
+          <InputElem
+            {...styles}
+            onChange={_onChange}
+            onClick={_onClick}
+            placeholder={placeholder}
+            type={type}
+            value={value}
+          />
+        </label>
+      ) : (
+        <label {...styles}>
+          {children}
+          <InputElem
+            {...styles}
+            onChange={_onChange}
+            onClick={_onClick}
+            placeholder={placeholder}
+            type={type}
+          />
+        </label>
+      )}
     </React.Fragment>
   );
 };
@@ -39,7 +52,6 @@ Input.defaultProps = {
   placeholder: '문구를 입력해 주세요',
   _onChange: () => {},
   _onClick: () => {},
-  value: '',
 };
 
 const InputElem = styled.input`

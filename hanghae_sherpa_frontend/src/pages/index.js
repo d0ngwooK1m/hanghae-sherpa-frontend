@@ -1,6 +1,6 @@
 import SignupPage from './SignupPage';
 import MainPage from './MainPage';
 import LoginPage from './LoginPage';
-import { useHistory } from 'react-router';
+import MyPage from './MyPage';
 
-export { SignupPage, MainPage, LoginPage };
+export { SignupPage, MainPage, LoginPage, MyPage };
