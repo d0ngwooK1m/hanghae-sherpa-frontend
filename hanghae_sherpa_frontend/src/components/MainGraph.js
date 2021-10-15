@@ -22,14 +22,14 @@ const MainGraph = () => {
   return (
     <React.Fragment>
       <Grid width='340px' height='280px' position='relative' margin='auto'>
-        <Grid position='absolute' top='0px' zIndex='5' height='330px'>
+        <Grid position='absolute' top='10px' zIndex='5' height='330px'>
           <ResponsiveLine
             data={Tdata}
             colors={['#79FF71']}
             areaOpacity={0.7}
             // layers={['grid', 'axes', 'lines', 'markers', 'legends']}
             layers={['grid', 'axes', 'lines', 'areas', 'markers']}
-            margin={{ top: 50, right: 50, bottom: 50, left: 50 }}
+            margin={{ top: 50, right: 50, bottom: 60, left: 50 }}
             enableArea={true}
             enableGridX={false}
             enableGridY={false}
