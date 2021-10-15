@@ -22,7 +22,7 @@ const MainGraph = () => {
   return (
     <React.Fragment>
       <Grid width='340px' height='280px' position='relative' margin='auto'>
-        <Grid position='absolute' top='30px' zIndex='5' height='330px'>
+        <Grid position='absolute' top='10px' zIndex='5' height='330px'>
           <ResponsiveLine
             data={Tdata}
             colors={['#79FF71']}

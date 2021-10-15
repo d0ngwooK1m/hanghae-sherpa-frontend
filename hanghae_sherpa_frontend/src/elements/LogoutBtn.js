@@ -5,7 +5,7 @@ import { Button } from '.';
 const LogoutBtn = () => {
   const history = useHistory();
   const onClickHandler = () => {
-    history.push('/');
+    window.location.href = '/';
   };
 
   return (

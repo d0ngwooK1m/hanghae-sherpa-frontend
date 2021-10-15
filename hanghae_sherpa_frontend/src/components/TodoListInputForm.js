@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
-import { InputRange, Button, InputDate, RangeSlider } from '../elements';
+import styled, { css } from 'styled-components';
+import { InputRange, Button, InputDate } from '../elements';
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { todolistCreators } from '../redux/modules/todolist';
 import { graphCreators } from '../redux/modules/graph';
 import moment from 'moment';
-import DetailBtn from '../elements/DetailBtn';
-import LogoutBtn from '../elements/LogoutBtn';
 
 const TodoListInputForm = () => {
   const history = useHistory();
@@ -98,93 +96,93 @@ const TodoListInputForm = () => {
     console.log(addInfo);
     dispatch(graphCreators.addGraphInfoMiddleware(addInfo, date));
   };
-  // console.log(date);
 
   return (
     <React.Fragment>
-      <div>
-        <InputDate width='50%' />
-        <LogoutBtn />
-        <DetailBtn />
-      </div>
-      <Form>
-        <label>완성도: {perfection}</label>
-        <InputRange
-          id='perpection'
-          value={perfection}
-          // _onChange={(e) => setValue({ ...value, perfection: e.target.value })}
-          _onChange={(e) => {
-            setPerfection(e.target.value);
+      <Grid>
+        <Form>
+          <label>완성도: {perfection}</label>
+          <InputRange
+            id='perpection'
+            value={perfection}
+            _onChange={(e) => {
+              setPerfection(e.target.value);
+            }}
+          />
+        </Form>
+        <Form>
+          <label>창의성: {creativity}</label>
+          <InputRange
+            id='creativity'
+            value={creativity}
+            _onChange={(e) => {
+              setCreativity(e.target.value);
+            }}
+          />
+        </Form>
+        <Form>
+          <label>난이도: {difficulty}</label>
+          <InputRange
+            id='difficulty'
+            value={difficulty}
+            _onChange={(e) => {
+              setDifficulty(e.target.value);
+            }}
+          />
+        </Form>
+        <Form>
+          <label>집중도: {concentration}</label>
+          <InputRange
+            id='concentration'
+            value={concentration}
+            _onChange={(e) => {
+              setConcentration(e.target.value);
+            }}
+          />
+        </Form>
+        <Form>
+          <label>만족도: {satisfaction}</label>
+          <InputRange
+            id='satisfaction'
+            value={satisfaction}
+            _onChange={(e) => {
+              setSatisfaction(e.target.value);
+            }}
+          />
+        </Form>
+        <Button
+          width='100%'
+          text='저장'
+          _onClick={() => {
+            handleSubmit();
           }}
-        />
-      </Form>
-      <Form>
-        <label>창의성: {creativity}</label>
-        <InputRange
-          id='creativity'
-          value={creativity}
-          // _onChange={(e) => setValue({ ...value, creativity: e.target.value })}
-          _onChange={(e) => {
-            setCreativity(e.target.value);
-          }}
-        />
-      </Form>
-      <Form>
-        <label>난이도: {difficulty}</label>
-        <InputRange
-          id='difficulty'
-          value={difficulty}
-          // _onChange={(e) => setValue({ ...value, difficulty: e.target.value })}
-          _onChange={(e) => {
-            setDifficulty(e.target.value);
-          }}
-        />
-      </Form>
-      <Form>
-        <label>집중도: {concentration}</label>
-        <InputRange
-          id='concentration'
-          value={concentration}
-          // _onChange={(e) =>
-          //   setValue({ ...value, concentration: e.target.value })
-          // }
-          _onChange={(e) => {
-            setConcentration(e.target.value);
-          }}
-        />
-      </Form>
-      <Form>
-        <label>만족도: {satisfaction}</label>
-        <InputRange
-          id='satisfaction'
-          value={satisfaction}
-          // _onChange={(e) =>
-          //   setValue({ ...value, satisfaction: e.target.value })
-          // }
-          _onChange={(e) => {
-            setSatisfaction(e.target.value);
-          }}
-        />
-      </Form>
-      <Button
-        width='100%'
-        text='저장'
-        _onClick={() => {
-          if (date === today) {
-            return handleSubmit();
-          } else {
-            return alert('지난 일을 수정할 수 없어요!');
-          }
-        }}
-      ></Button>
+        ></Button>
+      </Grid>
     </React.Fragment>
   );
 };
 
+const contentsBox = css`
+  display: flow-root;
+  justify-content: center;
+  align-items: center;
+  height: 270px;
+`;
+
+const Grid = styled.div`
+  ${({ theme }) => {
+    return css`
+      ${contentsBox}
+      position: relative;
+      justify-content: flex-end;
+    `;
+  }}
+`;
+
 const Form = styled.form`
   width: 100%;
   margin: 4px auto;
-  height: 30px;
+  height: 35px;
   text-align: center;
 `;
 
