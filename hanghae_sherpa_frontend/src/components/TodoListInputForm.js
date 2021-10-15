@@ -32,6 +32,10 @@ const TodoListInputForm = () => {
   console.log(data);
   console.log(data[1].data[0].x);
 
+  const date = useSelector((state) => state.graph.date);
+  const today = moment().format('YYYY-MM-DD');
+  console.log(today);
+
   const [perfection, setPerfection] = useState('0');
   const [creativity, setCreativity] = useState('0');
   const [difficulty, setDifficulty] = useState('0');
@@ -90,8 +94,9 @@ const TodoListInputForm = () => {
     };
 
     console.log(addInfo);
-    dispatch(graphCreators.addGraphInfoMiddleware(addInfo));
+    dispatch(graphCreators.addGraphInfoMiddleware(addInfo, date));
   };
+  // console.log(date);
 
   return (
     <React.Fragment>
@@ -155,7 +160,17 @@ const TodoListInputForm = () => {
           }}
         />
       </Form>
-      <Button text='저장' _onClick={handleSubmit}></Button>
+      <Button
+        text='저장'
+        _onClick={() => {
+          // if (date === today) {
+          //   handleSubmit();
+          // } else {
+          //   alert('지난 일을 수정할 수 없어요!');
+          // }
+          handleSubmit();
+        }}
+      ></Button>
     </React.Fragment>
   );
 };

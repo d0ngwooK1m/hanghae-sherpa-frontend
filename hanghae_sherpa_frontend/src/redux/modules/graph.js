@@ -1,12 +1,15 @@
 import { createAction, handleActions } from 'redux-actions';
 import produce from 'immer';
 import { apis } from '../../lib/axios';
+import moment from 'moment';
 
 const GET_GRAPH = 'GET_GRAPH';
 const ADD_GRAPH_INFO = 'GET_GRAPH_INFO';
+const UPDATE_DATE = 'UPDATE_DATE';
 
 const getGraph = createAction(GET_GRAPH, (data) => ({ data }));
 const addGraphInfo = createAction(ADD_GRAPH_INFO, (data) => ({ data }));
+const updateDate = createAction(UPDATE_DATE, (date) => ({ date }));
 
 const initialState = {
   data: [
@@ -64,6 +67,7 @@ const initialState = {
     },
   ],
   is_updated: false,
+  date: moment().format('YYYY-MM-DD'),
 };
 
 const getGraphMiddleware = (date) => {
@@ -83,10 +87,10 @@ const getGraphMiddleware = (date) => {
   };
 };
 
-const addGraphInfoMiddleware = (graphInfo) => {
+const addGraphInfoMiddleware = (graphInfo, date) => {
   return (dispatch) => {
     apis
-      .addInfo(graphInfo)
+      .addInfo(graphInfo, date)
       .then((res) => {
         console.log(res.data);
         const data = res.data;
@@ -113,6 +117,10 @@ export default handleActions(
         console.log(draft.is_updated);
         draft.is_updated = true;
       }),
+    [UPDATE_DATE]: (state, action) =>
+      produce(state, (draft) => {
+        draft.date = action.payload.date;
+      }),
   },
   initialState
 );
@@ -120,6 +128,7 @@ export default handleActions(
 const graphCreators = {
   getGraphMiddleware,
   addGraphInfoMiddleware,
+  updateDate,
 };
 
 export { graphCreators };
