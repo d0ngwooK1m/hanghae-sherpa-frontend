@@ -4,7 +4,7 @@ import { history } from '../redux/configureStore';
 // axios.defaults.withCredentials = true;
 
 const instance = axios.create({
-  // baseURL: 'http://localhost:4000/',
+  // baseURL: 'http://localhost:3000/',
   baseURL: 'http://13.125.174.214/',
   headers: {
     'content-type': 'application/json;charset=UTF-8',
@@ -48,6 +48,16 @@ instance.interceptors.response.use(
     if (error.response.status === 401) {
       // console.log('asdfasdf');
       history.push('/');
+    }
+
+    // 데이터가 둘 다 없는 경우
+    if (
+      error.response.status === 400 &&
+      error.response.data.msg === '데이터가 없습니다.'
+    ) {
+      console.log(error.response.data.msg);
+      alert('저장된 데이터가 없습니다.');
+      history.replace('/main');
     }
     return error;
   }
