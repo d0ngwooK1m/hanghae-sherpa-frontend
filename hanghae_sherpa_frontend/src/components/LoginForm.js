@@ -10,25 +10,46 @@ const LoginForm = () => {
 
   const [userId, setUserId] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [submit, setSubmit] = React.useState(false);
+
+  const RegExUserId = /^[a-zA-Z0-9!@#$%^&*]{4,12}$/;
+  const RegExPassword = /^[a-zA-Z0-9!@#$%^&*]{6,18}$/;
 
   const login = () => {
+    setSubmit(true);
+
     if (userId === '' || password === '') {
       window.alert('아이디 혹은 비밀번호가 공란입니다! 입력해주세요!');
       return;
     }
 
+    console.log(RegExUserId.test(userId));
+    console.log(RegExUserId.test(password));
+
+    if (
+      RegExUserId.test(userId) === false ||
+      RegExPassword.test(password) === false
+    ) {
+      // console.log(RegExUserId.test(userId));
+      // console.log(RegExUserId.test(password));
+      return;
+    }
     const loginInfo = {
       userId: userId,
       password: password,
     };
     console.log(loginInfo);
     dispatch(userCreators.loginMiddleware(loginInfo));
-    // history.push('/mainpage');
+    // history.push('/main');
   };
 
   return (
     <React.Fragment>
-      <Grid>
+      <Grid
+        onKeyPress={(e) => {
+          console.log(e);
+        }}
+      >
         <Text size='20px' bold text-align='center'>
           로그인
         </Text>
@@ -41,6 +62,13 @@ const LoginForm = () => {
             }}
           />
         </Grid>
+        {submit && RegExUserId.test(userId) === false ? (
+          <Text color='red' size='12px'>
+            Id를 다시 입력해주세요
+          </Text>
+        ) : (
+          ''
+        )}
 
         <Grid padding='16px 0px'>
           <Input
@@ -52,6 +80,13 @@ const LoginForm = () => {
             }}
           />
         </Grid>
+        {submit && RegExPassword.test(password) === false ? (
+          <Text color='red' size='12px'>
+            Password를 다시 입력해주세요
+          </Text>
+        ) : (
+          ''
+        )}
 
         <Button
           text='로그인하기'

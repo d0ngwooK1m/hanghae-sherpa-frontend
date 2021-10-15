@@ -14,6 +14,7 @@ const Grid = (props) => {
     padding,
     bg,
     children,
+    img,
   } = props;
 
   const styles = {
@@ -48,6 +49,7 @@ Grid.defaultProps = {
   padding: false,
   margin: false,
   bg: false,
+  onKeyPress: () => {},
 };
 
 const GridBox = styled.div`

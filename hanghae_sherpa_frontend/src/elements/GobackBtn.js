@@ -15,6 +15,7 @@ const GobackBtn = () => {
         _onClick={() => {
           onClickHandler();
         }}
+        type='header'
       ></Button>
     </React.Fragment>
   );

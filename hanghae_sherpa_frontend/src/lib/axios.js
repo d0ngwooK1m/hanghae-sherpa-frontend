@@ -1,8 +1,5 @@
 import axios from 'axios';
 import { history } from '../redux/configureStore';
-import { useDispatch } from 'react-redux';
-import { graphCreators } from '../redux/modules/graph';
-import moment from 'moment';
 
 // axios.defaults.withCredentials = true;
 
@@ -40,13 +37,35 @@ instance.interceptors.request.use(
 );
 
 instance.interceptors.response.use(
-  (response) => {
-    return response;
+  (success) => {
+    console.log(success);
+    if (success.status === 200 && success.data.msg === '로그인성공') {
+      let date = new Date();
+      date.setTime(date.getTime() + 3 * 60 * 60 * 1000);
+
+      document.cookie = `user=${
+        success.data.token
+      };expires=${date.toUTCString()};path=/`;
+      // console.log(error.response.data.msg);
+      history.push('/main');
+      // history.replace('/main');
+    }
+    if (success.status === 200 && success.data.msg === '아이디중복체크완료') {
+      // console.log(error.response.data.msg);
+      alert('아이디 중복체크 완료');
+      // history.replace('/main');
+    }
+    if (success.status === 200 && success.data.msg === '닉네임중복체크완료') {
+      // console.log(error.response.data.msg);
+      alert('닉네임 중복체크 완료');
+      // history.replace('/main');
+    }
+    return success;
   },
   (error) => {
     // const { status, data, config } = error.response;
     // console.log(status);
-    console.log(error.response.status);
+    console.log(error.response);
 
     if (error.response.status === 401) {
       // console.log('asdfasdf');
@@ -63,6 +82,22 @@ instance.interceptors.response.use(
       // history.replace('/main');
       window.location.href = '/main';
     }
+
+    if (
+      error.response.status === 400 &&
+      error.response.data.errorMessage === '중복닉네임입니다.'
+    ) {
+      alert('중복닉네임입니다.');
+      window.location.href = '/signup';
+    }
+
+    if (
+      error.response.status === 400 &&
+      error.response.data.errorMessage === '중복아이디입니다.'
+    ) {
+      alert('중복아이디입니다.');
+      window.location.href = '/signup';
+    }
     return error;
   }
 );
@@ -71,6 +106,8 @@ export const apis = {
   //회원가입 및 로그인 관련 api
   login: (loginInfo) => instance.post('/user/login', loginInfo),
   signup: (signupInfo) => instance.post('/user/signup', signupInfo),
+  idCheck: (userId) => instance.post('/user/signup/idCheck', userId),
+  nickCheck: (nickname) => instance.post('/user/signup/nickCheck', nickname),
   //메인페이지 관련 api
   //getInfo 쿼리로 날짜 데이터 전송
   // getInfo: () => instance.get('/mainpage/view'),

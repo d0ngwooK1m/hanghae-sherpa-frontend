@@ -23,15 +23,12 @@ const loginMiddleware = (loginInfo) => {
       .login(loginInfo)
       .then((res) => {
         // console.log(res);
-
-        let date = new Date();
-        date.setTime(date.getTime() + 3 * 60 * 60 * 1000);
-
-        document.cookie = `user=${
-          res.data.token
-        };expires=${date.toUTCString()};path=/`;
-
-        history.push('/main');
+        // let date = new Date();
+        // date.setTime(date.getTime() + 3 * 60 * 60 * 1000);
+        // document.cookie = `user=${
+        //   res.data.token
+        // };expires=${date.toUTCString()};path=/`;
+        // history.push('/main');
       })
       .catch((err) => {
         return console.log(err);
@@ -43,6 +40,32 @@ const signupMiddleware = (signupInfo) => {
   return () => {
     apis
       .signup(signupInfo)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+const idCheckMiddleware = (userId) => {
+  return () => {
+    apis
+      .idCheck(userId)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+const nickCheckMiddleware = (nickname) => {
+  return () => {
+    apis
+      .nickCheck(nickname)
       .then((res) => {
         console.log(res);
       })
@@ -64,6 +87,8 @@ export default handleActions(
 const userCreators = {
   signupMiddleware,
   loginMiddleware,
+  idCheckMiddleware,
+  nickCheckMiddleware,
   setUser,
 };
 
