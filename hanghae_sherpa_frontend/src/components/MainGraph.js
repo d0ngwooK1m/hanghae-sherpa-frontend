@@ -21,7 +21,7 @@ const MainGraph = () => {
   const Ydata = [data[0]];
   return (
     <React.Fragment>
-      <Grid width='340px' height='330px' position='relative' margin='auto'>
+      <Grid width='340px' height='280px' position='relative' margin='auto'>
         <Grid position='absolute' top='0px' zIndex='5' height='330px'>
           <ResponsiveLine
             data={Tdata}

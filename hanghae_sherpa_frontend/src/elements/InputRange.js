@@ -12,7 +12,7 @@ const InputRange = (props) => {
         <Range
           type={type}
           value={value}
-          {...styles}
+          width='75%'
           min={min}
           max={max}
           step={step}

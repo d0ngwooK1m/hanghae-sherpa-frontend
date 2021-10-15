@@ -1,11 +1,11 @@
 import React from 'react';
-
-import { Frame, MypageGraph, MypageText } from '../components';
+import { Frame, MypageGraph, MypageText, MypageHeader } from '../components';
 
 const MyPage = () => {
   return (
     <React.Fragment>
-      <Frame>
+      <Frame padding='10px 15px'>
+        <MypageHeader />
         <MypageText />
         <MypageGraph />
       </Frame>
