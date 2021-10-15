@@ -17,6 +17,7 @@ const DetailBtn = () => {
         _onClick={() => {
           onClickHandler();
         }}
+        type='header'
       ></Button>
     </React.Fragment>
   );

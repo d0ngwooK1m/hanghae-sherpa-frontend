@@ -20,6 +20,7 @@ const LogoutBtn = () => {
 
           onClickHandler();
         }}
+        type='header'
       ></Button>
     </React.Fragment>
   );
