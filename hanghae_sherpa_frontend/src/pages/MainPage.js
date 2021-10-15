@@ -12,6 +12,8 @@ const MainPage = () => {
   // React.useEffect(() => {
   //   dispatch(graphCreators.getGraphMiddleware(''));
   // }, [_is_updated]);
+  React.useEffect(() => {});
+
   return (
     <React.Fragment>
       <Frame>

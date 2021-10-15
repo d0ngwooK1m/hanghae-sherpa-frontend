@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
+import styled from 'styled-components';
 import { Text, Grid, Input, Button } from '../elements';
 import { userCreators } from '../redux/modules/user';
 
@@ -29,9 +30,9 @@ const LoginForm = () => {
   return (
     <React.Fragment>
       <Grid>
-        <Text size='20px' bold text-align='center'>
+        <Title size='20px' bold text-align='center'>
           로그인
-        </Text>
+        </Title>
         <Grid padding='16px 0px'>
           <Input
             label='아이디'
@@ -74,5 +75,13 @@ const LoginForm = () => {
     </React.Fragment>
   );
 };
+
+const Title = styled.div`
+  width: 40%;
+  font-size: 20px;
+  font-weight: 600;
+  display: inline-flex;
+  justify-content: center;
+`;
 
 export default LoginForm;

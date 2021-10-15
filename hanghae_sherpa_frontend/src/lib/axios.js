@@ -3,8 +3,11 @@ import { history } from '../redux/configureStore';
 import { useDispatch } from 'react-redux';
 import { graphCreators } from '../redux/modules/graph';
 import moment from 'moment';
+import React, { useEffect, useState } from 'react';
+import { Spinner } from '../components';
 
 // axios.defaults.withCredentials = true;
+// const [loading, setLoading] = useState(null);
 
 const instance = axios.create({
   // baseURL: 'http://localhost:4000/',
@@ -17,6 +20,27 @@ const instance = axios.create({
   withCredentials: true,
   // credentials: 'include',
 });
+
+// useEffect(() => {
+//   const load = async () => {
+//     try {
+//       setLoading(true);
+
+//       await instance.post('/', load).then((res) => {
+//         console.log();
+//       });
+//     } catch (e) {
+//       // 에러 처리
+//     }
+
+//     setLoading(false);
+//   };
+
+//   load();
+// }, []);
+
+// 로딩 시 Spinner 띄움
+// if (loading) return <Spinner />;
 
 instance.interceptors.request.use(
   (config) => {

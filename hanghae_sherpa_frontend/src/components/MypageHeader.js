@@ -6,9 +6,7 @@ const MypageHeader = () => {
   return (
     <React.Fragment>
       <Grid>
-        <Title size='20px' bold text-align='left' width='40%'>
-          마이페이지
-        </Title>
+        <Title>마이페이지</Title>
         <LogoutBtn />
         <GobackBtn />
       </Grid>

@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { userCreators } from '../redux/modules/user';
@@ -28,7 +29,8 @@ const SignupForm = () => {
 
   return (
     <React.Fragment>
-      <Grid bg='blue'>
+      <Title>회원가입</Title>
+      <Grid bg='blue' margin='16px 0'>
         <Grid margin='5px 0px'>
           <Input
             width='80%'
@@ -100,5 +102,13 @@ const SignupForm = () => {
     </React.Fragment>
   );
 };
+
+const Title = styled.div`
+  width: 40%;
+  font-size: 20px;
+  font-weight: 600;
+  display: inline-flex;
+  justify-content: center;
+`;
 
 export default SignupForm;
