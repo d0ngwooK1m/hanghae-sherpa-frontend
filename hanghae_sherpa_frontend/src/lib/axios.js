@@ -2,6 +2,7 @@ import axios from 'axios';
 import { history } from '../redux/configureStore';
 
 // axios.defaults.withCredentials = true;
+// const [loading, setLoading] = useState(null);
 
 const instance = axios.create({
   // baseURL: 'http://localhost:4000/',
@@ -14,6 +15,27 @@ const instance = axios.create({
   withCredentials: true,
   // credentials: 'include',
 });
+
+// useEffect(() => {
+//   const load = async () => {
+//     try {
+//       setLoading(true);
+
+//       await instance.post('/', load).then((res) => {
+//         console.log();
+//       });
+//     } catch (e) {
+//       // 에러 처리
+//     }
+
+//     setLoading(false);
+//   };
+
+//   load();
+// }, []);
+
+// 로딩 시 Spinner 띄움
+// if (loading) return <Spinner />;
 
 instance.interceptors.request.use(
   (config) => {

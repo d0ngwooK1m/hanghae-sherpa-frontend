@@ -13,7 +13,6 @@ const SignupPage = () => {
   return (
     <React.Fragment>
       <Frame>
-        <Text>Login / Register</Text>
         <SignupForm />
       </Frame>
     </React.Fragment>

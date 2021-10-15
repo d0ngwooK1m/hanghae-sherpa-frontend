@@ -7,6 +7,7 @@ import MypageGraph from './MypageGraph';
 import MypageText from './MypageText';
 import MypageHeader from './MypageHeader';
 import MainHeader from './MainHeader';
+import Spinner from './spinner';
 
 export {
   LoginForm,
@@ -18,4 +19,5 @@ export {
   MypageText,
   MypageHeader,
   MainHeader,
+  Spinner,
 };

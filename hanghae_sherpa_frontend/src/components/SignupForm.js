@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { userCreators } from '../redux/modules/user';
@@ -52,8 +53,14 @@ const SignupForm = () => {
 
   return (
     <React.Fragment>
+<<<<<<< HEAD
+      <Title>회원가입</Title>
+      <Grid bg='blue' margin='16px 0'>
+        <Grid margin='5px 0px'>
+=======
       <Grid>
         <Grid margin='100px 0px 0px 0px'>
+>>>>>>> 7abfccbccc4bb852b127700d4ade01d10bdd9c99
           <Input
             width='80%'
             placeholder='아이디를 입력해 주세요'
@@ -162,5 +169,13 @@ const SignupForm = () => {
     </React.Fragment>
   );
 };
+
+const Title = styled.div`
+  width: 40%;
+  font-size: 20px;
+  font-weight: 600;
+  display: inline-flex;
+  justify-content: center;
+`;
 
 export default SignupForm;

@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { Button } from '.';
 
 const LogoutBtn = () => {
   const history = useHistory();
   const onClickHandler = () => {
-    window.location.href = '/';
+    setTimeout(() => history.push('/loading'));
+    // window.location.href = '/';
   };
 
   return (
