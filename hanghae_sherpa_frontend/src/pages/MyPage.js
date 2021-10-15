@@ -1,13 +1,12 @@
 import React from 'react';
-
-import { Frame, MypageGraph } from '../components';
-import MypageHeader from '../components/MypageHeader';
+import { Frame, MypageGraph, MypageText, MypageHeader } from '../components';
 
 const MyPage = () => {
   return (
     <React.Fragment>
       <Frame padding='10px 15px'>
         <MypageHeader />
+        <MypageText />
         <MypageGraph />
       </Frame>
     </React.Fragment>
