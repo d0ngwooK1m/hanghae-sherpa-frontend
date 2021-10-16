@@ -1,9 +1,10 @@
 import React from 'react';
-import { SignupForm, Frame } from '../components';
+import { Frame, LoginForm } from '../components';
 import { Redirect } from 'react-router';
 
-const SignupPage = () => {
+const LoginPage = () => {
   const cookie = document.cookie;
+
   if (cookie !== '') {
     return <Redirect to='/main' />;
   }
@@ -11,10 +12,10 @@ const SignupPage = () => {
   return (
     <React.Fragment>
       <Frame>
-        <SignupForm />
+        <LoginForm />
       </Frame>
     </React.Fragment>
   );
 };
 
-export default SignupPage;
+export default LoginPage;

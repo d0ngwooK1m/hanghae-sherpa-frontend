@@ -2,13 +2,28 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Grid = (props) => {
-  const { is_flex, width, height, border, margin, padding, bg, children } =
-    props;
+  const {
+    is_flex,
+    width,
+    height,
+    position,
+    top,
+    zIndex,
+    border,
+    margin,
+    padding,
+    bg,
+    children,
+    img,
+  } = props;
 
   const styles = {
     is_flex: is_flex,
     width: width,
     height: height,
+    position: position,
+    top: top,
+    zIndex: zIndex,
     border: border,
     margin: margin,
     padding: padding,
@@ -27,15 +42,22 @@ Grid.defaultProps = {
   is_flex: false,
   width: '100%',
   height: null,
+  position: false,
+  top: false,
+  zIndex: false,
   border: false,
   padding: false,
   margin: false,
   bg: false,
+  onKeyPress: () => {},
 };
 
 const GridBox = styled.div`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
+  ${(props) => (props.position ? `position: ${props.position};` : '')};
+  ${(props) => (props.top ? `top: ${props.top};` : '')};
+  ${(props) => (props.zIndex ? `z-index: ${props.zIndex};` : '')};
   ${(props) => (props.border ? `border: ${props.border};` : '')};
   box-sizing: border-box;
   ${(props) => (props.padding ? `padding: ${props.padding};` : '')};
