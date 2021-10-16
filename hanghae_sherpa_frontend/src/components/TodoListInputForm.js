@@ -111,6 +111,8 @@ const TodoListInputForm = () => {
           text='저장'
           _onClick={() => {
             handleSubmit();
+            window.location.href = '/main'
+            // add loading spinner
           }}
         ></Button>
       </Grid>

@@ -1,70 +1,76 @@
-# Getting Started with Create React App
+<img src='https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbkHzp7%2FbtrhTSkFWHl%2FGSfYQx3P6AQ6IOUN9eKBtk%2Fimg.jpg'>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+<!-- # 항해 미니프로젝트2(셰르파)🏔 -->
 
-In the project directory, you can run:
+# 목차
+1. [개요](#개요)
 
-### `yarn start`
+2. [공통](#공통)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+3. [WIL](#WIL)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+4. [와이어프레임](#와이어프레임)
 
-### `yarn test`
+5. [기능정보](#기능정보)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+6. [진행과정](#진행과정)
 
-### `yarn build`
+7. [API](#API)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+8. [DBdiagram](#DBdiagram)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# 개요
+다른 사람과의 비교는 필요 없다! 오로지 과거의 나와 비교해서 내가 얼마나 성장했는지, 목표치를 잘 유지하는지를 산 모양의 그래프로 볼 수 있는 항해라는 산의 등산 도우미, 셰르파를 소개합니다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 기간 / 인원
+```
+- Front-end(김동우, 안정우)
+- Back-end(황창환, 박재현)
+- 20211011 ~ 20211016(6일간)
+```
+# 공통
+1. 로그인 회원가입
+2. 데이터베이스 그래프화
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 프론트엔드
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+그래프 라이브러리 d3사용
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+김동우: 회원가입 페이지, 메인페이지 그래프, Text, Input
 
-## Learn More
+안정우: 로그인 페이지, 메인페이지 작성 파트, Grid, Btn
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 백엔드
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+실시간 통신 웹소켓 지양
 
-### Code Splitting
+database: mysql (sequelize)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+# WIL
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+# 와이어 프레임
 
-### Making a Progressive Web App
+![셰르파로그인](/readmeImg/셰르파로그인.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+![셰르파회원가입](/readmeImg/셰르파회원가입.png)
 
-### Advanced Configuration
+![셰르파메인](/readmeImg/셰르파메인.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+![셰르파마이](/readmeImg/셰르파마이.png)
 
-### Deployment
+# 기능정보
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+# 진행과정
 
-### `yarn build` fails to minify
+## API
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![API1](/readmeImg/api1.PNG)
+![API2](/readmeImg/api2.PNG)
+
+## DB diagram
+
+![DB](/readmeImg/DB.png)

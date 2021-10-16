@@ -29,8 +29,13 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "styled-components": "^5.3.1",
+<<<<<<< HEAD
+    "web-vitals": "^1.0.1",
+    "yarn": "^1.22.15"
+=======
     "sweetalert2": "^11.1.8",
     "web-vitals": "^1.0.1"
+>>>>>>> f0080b1830597047cc370ba18134f4692349f362
   },
   "scripts": {
     "start": "react-scripts start",
