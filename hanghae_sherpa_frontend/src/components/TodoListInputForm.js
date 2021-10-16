@@ -5,32 +5,13 @@ import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { todolistCreators } from '../redux/modules/todolist';
 import { graphCreators } from '../redux/modules/graph';
+import Swal from 'sweetalert2';
 import moment from 'moment';
 
 const TodoListInputForm = () => {
-  const history = useHistory();
   const dispatch = useDispatch();
-  // const [value, setValue] = useState({
-  //   // date: moment().format('YYYY-MM-DD'),
-  //   // 오늘 날짜로 기본 설정
-  //   perfection: '',
-  //   creativity: '',
-  //   difficulty: '',
-  //   concentration: '',
-  //   satisfaction: '',
-  // });
-
-  // const {
-  //   // date,
-  //   perfection,
-  //   creativity,
-  //   difficulty,
-  //   concentration,
-  //   satisfaction,
-  // } = value;
-  const data = useSelector((state) => state.graph.data);
+  let data = useSelector((state) => state.graph.data);
   console.log(data);
-  console.log(data[1].data[0].x);
 
   const date = useSelector((state) => state.graph.date);
   const today = moment().format('YYYY-MM-DD');
@@ -50,41 +31,15 @@ const TodoListInputForm = () => {
     setSatisfaction(`${data[1].data[4].y}`);
   }, [data]);
 
-  // 데이터 전송 함수
-  // const handleSubmit = (e) => {
-  //   // 원래는 firebase에 저장하기 위한 데이터 객체..
-  //   const addInfo = {
-  //     ...value,
-  //     // date: parseInt(date.split('-').join('')), // 날짜 형태 변경하여 저장.
-  //     // query: parseInt(date.slice(0, 5)),
-  //     perfection,
-  //     creativity,
-  //     difficulty,
-  //     concentration,
-  //     satisfaction,
-  //   };
-
-  //   if (addInfo.perfection === '') {
-  //     addInfo.perfection = '5';
-  //   }
-  //   if (addInfo.creativity === '') {
-  //     addInfo.creativity = '5';
-  //   }
-  //   if (addInfo.difficulty === '') {
-  //     addInfo.difficulty = '5';
-  //   }
-  //   if (addInfo.concentration === '') {
-  //     addInfo.concentration = '5';
-  //   }
-  //   if (addInfo.satisfaction === '') {
-  //     addInfo.satisfaction = '5';
-  //   }
-  //   console.log(addInfo);
-  //   dispatch(graphCreators.addGraphInfoMiddleware(addInfo));
-  //   // history.replace('/main');
-  // };
-
   const handleSubmit = () => {
+    if (date !== today) {
+      return Swal.fire({
+        text: '지금은 데이터를 입력할 수 없습니다!',
+        width: '360px',
+        confirmButtonColor: '#E3344E',
+      });
+    }
+
     const addInfo = {
       perfection,
       creativity,
@@ -107,6 +62,7 @@ const TodoListInputForm = () => {
             value={perfection}
             _onChange={(e) => {
               setPerfection(e.target.value);
+              console.log(perfection);
             }}
           />
         </Form>

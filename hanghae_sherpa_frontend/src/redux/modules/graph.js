@@ -8,13 +8,13 @@ const GET_MYPAGE_GRAPH = 'GET_MYPAGE_GRAPH';
 const ADD_GRAPH_INFO = 'GET_GRAPH_INFO';
 const UPDATE_DATE = 'UPDATE_DATE';
 
-const getGraph = createAction(GET_GRAPH, (data) => ({ data }));
+const getGraph = createAction(GET_GRAPH, (data, date) => ({ data, date }));
 const getMypageGraph = createAction(GET_MYPAGE_GRAPH, (data, num) => ({
   data,
   num,
 }));
 const addGraphInfo = createAction(ADD_GRAPH_INFO, (data) => ({ data }));
-const updateDate = createAction(UPDATE_DATE, (date, num) => ({ date }));
+const updateDate = createAction(UPDATE_DATE, (date) => ({ date }));
 
 const initialState = {
   data: [
@@ -99,9 +99,9 @@ const initialState = {
       ],
     },
   ],
-  is_updated: false,
   date: moment().format('YYYY-MM-DD'),
   todo_num: 0,
+  signup_date: moment().format('YYYY-MM-DD'),
 };
 
 const getGraphMiddleware = (date) => {
@@ -112,8 +112,9 @@ const getGraphMiddleware = (date) => {
         console.log(res.data);
         const data = res.data;
         const dataArr = [data.yesterdayTodo, data.todo];
+        const signupDate = data.signupDate;
         console.log(dataArr);
-        dispatch(getGraph(dataArr));
+        dispatch(getGraph(dataArr, signupDate));
       })
       .catch((err) => {
         // console.log(err);
@@ -153,22 +154,18 @@ export default handleActions(
       produce(state, (draft) => {
         console.log(action.payload.data);
         draft.data = action.payload.data;
-        if (draft.is_updated === true) {
-          draft.is_updated = false;
-        }
+        draft.signup_date = action.payload.date;
       }),
     [GET_MYPAGE_GRAPH]: (state, action) =>
       produce(state, (draft) => {
         draft.mypage_data = action.payload.data;
-        if (draft.is_updated === true) {
-          draft.is_updated = false;
-        }
         draft.todo_num = action.payload.num;
       }),
     [ADD_GRAPH_INFO]: (state, action) =>
       produce(state, (draft) => {
         console.log(draft.is_updated);
         draft.is_updated = true;
+        window.location.href = '/main';
       }),
     [UPDATE_DATE]: (state, action) =>
       produce(state, (draft) => {

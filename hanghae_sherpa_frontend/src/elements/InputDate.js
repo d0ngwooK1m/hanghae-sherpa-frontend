@@ -1,61 +1,38 @@
-import React, { forwardRef, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import styled from 'styled-components';
-import DatePicker from 'react-datepicker';
-import { todolistCreators } from '../redux/modules/todolist';
 import { Input } from '.';
+import Swal from 'sweetalert2';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import { graphCreators } from '../redux/modules/graph';
 import moment from 'moment';
 
-// const InputDate = (props) => {
-//   const { type, _onChange } = props;
-
-//   const dateInput = document.getElementById('date');
-//   dateInput.valueAsDate = new Date();
-
-//   return (
-//     <React.Fragment>
-//       <InputDateEl type={type} onChange={_onChange}></InputDateEl>
-//     </React.Fragment>
-//   );
-// };
-
-// InputDate.defaultProps = {
-//   type: 'date',
-//   _onChange: () => {},
-// };
-
-// const InputDateEl = styled.input`
-//   type='date';
-//   id='currentDate';
-// `;
-
-// React Datepicker
 const InputDate = () => {
   const dispatch = useDispatch();
-  const _is_updated = useSelector((state) => state.graph.is_updated);
-  // console.log(_is_updated);
-
-  // const history = useHistory();
 
   const [date, setDate] = useState(moment().format('YYYY-MM-DD'));
-  // console.log(moment().format('YYYY-MM-DD'));
+  const signupDate = useSelector((state) => state.graph.signup_date);
+
   React.useEffect(() => {
     dispatch(graphCreators.getGraphMiddleware(date));
-    dispatch(graphCreators.updateDate(date));
-  }, [_is_updated, date]);
+    console.log(signupDate);
+    console.log(new Date(date), new Date(signupDate));
+    console.log(new Date(date) < new Date(signupDate));
 
-  // 데이터를 로드받지 않으면 datepicker 날짜 비활성화.
-  // const handleDateSelect = () => {
-  //   if (todoList === '') {
-  //     alert('저장된 데이터가 없습니다.');
-  //     return;
-  //   }
-  //   dispatch(todolistCreators.loadMiddleware());
-  // };
+    console.log(signupDate);
+
+    if (new Date(date) < new Date(signupDate)) {
+      Swal.fire({
+        text: '가입일 보다 과거로 갈 수 없습니다!',
+        width: '360px',
+        confirmButtonColor: '#E3344E',
+      });
+      setTimeout(() => {
+        window.location.href = '/main';
+      }, 1000);
+    }
+    dispatch(graphCreators.updateDate(date));
+  }, [date]);
 
   return (
     <React.Fragment>
