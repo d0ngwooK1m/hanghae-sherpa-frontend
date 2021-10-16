@@ -20,6 +20,7 @@ const Text = (props) => {
 const P = styled.p`
   ${(props) => (props.color ? `color: ${props.color}` : '')};
   ${(props) => (props.size ? `font-size: ${props.size}` : '')};
+  margin: 0px 0px 5px 0px;
   font-weight: ${(props) => (props.bold ? '600' : '400')};
 `;
 

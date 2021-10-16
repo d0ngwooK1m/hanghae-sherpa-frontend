@@ -1,14 +1,7 @@
 import React, { useEffect } from 'react';
-import { useHistory } from 'react-router';
 import { Button } from '.';
 
 const LogoutBtn = () => {
-  const history = useHistory();
-  const onClickHandler = () => {
-    setTimeout(() => history.push('/loading'));
-    // window.location.href = '/';
-  };
-
   return (
     <React.Fragment>
       <Button
@@ -19,7 +12,7 @@ const LogoutBtn = () => {
             '1111-11-11'
           ).toUTCString()}`;
 
-          onClickHandler();
+          window.location.href = '/';
         }}
         type='header'
       ></Button>

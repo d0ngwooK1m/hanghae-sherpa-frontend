@@ -1,20 +1,11 @@
 import React from 'react';
 import { ResponsiveLine } from '@nivo/line';
-import { useDispatch, useSelector } from 'react-redux';
-import { graphCreators } from '../redux/modules/graph';
+import { useSelector } from 'react-redux';
 
 import { Grid } from '../elements';
 
 const MainGraph = () => {
-  // const dispatch = useDispatch();
-  // const _is_updated = useSelector((state) => state.graph.is_updated);
-  // console.log(_is_updated);
-
-  // React.useEffect(() => {
-  //   dispatch(graphCreators.getGraphMiddleware());
-  // }, [_is_updated]);
-
-  const data = useSelector((state) => state.graph.data);
+  let data = useSelector((state) => state.graph.data);
   console.log(data);
 
   const Tdata = [data[1]];
@@ -27,8 +18,14 @@ const MainGraph = () => {
             data={Tdata}
             colors={['#79FF71']}
             areaOpacity={0.7}
-            // layers={['grid', 'axes', 'lines', 'markers', 'legends']}
             layers={['grid', 'axes', 'lines', 'areas', 'markers']}
+            yScale={{
+              type: 'linear',
+              min: 0,
+              max: 10,
+              stacked: true,
+              reverse: false,
+            }}
             margin={{ top: 50, right: 50, bottom: 60, left: 50 }}
             enableArea={true}
             enableGridX={false}
@@ -43,6 +40,13 @@ const MainGraph = () => {
             colors={['#B6CFB4']}
             areaOpacity={0.7}
             margin={{ top: 50, right: 50, bottom: 50, left: 50 }}
+            yScale={{
+              type: 'linear',
+              min: 0,
+              max: 10,
+              stacked: true,
+              reverse: false,
+            }}
             axisLeft={null}
             enableGridY={false}
             axisBottom={null}
