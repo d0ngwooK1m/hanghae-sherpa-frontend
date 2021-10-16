@@ -5,13 +5,6 @@ import { graphCreators } from '../redux/modules/graph';
 import { Frame, MainGraph, TodoListInputForm, MainHeader } from '../components';
 
 const MainPage = () => {
-  // const dispatch = useDispatch();
-  // const _is_updated = useSelector((state) => state.graph.is_updated);
-  // console.log(_is_updated);
-
-  // React.useEffect(() => {
-  //   dispatch(graphCreators.getGraphMiddleware(''));
-  // }, [_is_updated]);
   React.useEffect(() => {});
 
   return (

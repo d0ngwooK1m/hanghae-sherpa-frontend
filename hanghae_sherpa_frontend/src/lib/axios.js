@@ -1,8 +1,6 @@
 import axios from 'axios';
 import { history } from '../redux/configureStore';
-
-// axios.defaults.withCredentials = true;
-// const [loading, setLoading] = useState(null);
+import Swal from 'sweetalert2';
 
 const instance = axios.create({
   // baseURL: 'http://localhost:4000/',
@@ -10,32 +8,9 @@ const instance = axios.create({
   headers: {
     'content-type': 'application/json;charset=UTF-8',
     accept: 'application/json',
-    // Authorization: `Bearer ${document.cookie}`,
   },
   withCredentials: true,
-  // credentials: 'include',
 });
-
-// useEffect(() => {
-//   const load = async () => {
-//     try {
-//       setLoading(true);
-
-//       await instance.post('/', load).then((res) => {
-//         console.log();
-//       });
-//     } catch (e) {
-//       // 에러 처리
-//     }
-
-//     setLoading(false);
-//   };
-
-//   load();
-// }, []);
-
-// 로딩 시 Spinner 띄움
-// if (loading) return <Spinner />;
 
 instance.interceptors.request.use(
   (config) => {
@@ -68,48 +43,51 @@ instance.interceptors.response.use(
       document.cookie = `user=${
         success.data.token
       };expires=${date.toUTCString()};path=/`;
-      // console.log(error.response.data.msg);
       history.push('/main');
-      // history.replace('/main');
     }
     if (success.status === 200 && success.data.msg === '아이디중복체크완료') {
-      // console.log(error.response.data.msg);
-      alert('아이디 중복체크 완료');
-      // history.replace('/main');
+      Swal.fire({
+        text: '아이디 중복체크 완료',
+        width: '360px',
+        confirmButtonColor: '#E3344E',
+      });
     }
     if (success.status === 200 && success.data.msg === '닉네임중복체크완료') {
-      // console.log(error.response.data.msg);
-      alert('닉네임 중복체크 완료');
-      // history.replace('/main');
+      Swal.fire({
+        text: '닉네임 중복체크 완료',
+        width: '360px',
+        confirmButtonColor: '#E3344E',
+      });
     }
     return success;
   },
   (error) => {
-    // const { status, data, config } = error.response;
-    // console.log(status);
     console.log(error.response);
 
     if (error.response.status === 401) {
-      // console.log('asdfasdf');
       history.push('/');
     }
 
-    // 데이터가 둘 다 없는 경우
     if (
       error.response.status === 400 &&
-      error.response.data.msg === '데이터가 없습니다.'
+      error.response.data.msg === '아이디 또는 비밀번호가 정확하지 않습니다'
     ) {
-      // console.log(error.response.data.msg);
-      alert('저장된 데이터가 없습니다.');
-      // history.replace('/main');
-      window.location.href = '/main';
+      Swal.fire({
+        text: '아이디 또는 비밀번호가 정확하지 않습니다',
+        width: '360px',
+        confirmButtonColor: '#E3344E',
+      });
     }
 
     if (
       error.response.status === 400 &&
       error.response.data.errorMessage === '중복닉네임입니다.'
     ) {
-      alert('중복닉네임입니다.');
+      Swal.fire({
+        text: '중복 닉네임입니다.',
+        width: '360px',
+        confirmButtonColor: '#E3344E',
+      });
       window.location.href = '/signup';
     }
 
@@ -117,7 +95,11 @@ instance.interceptors.response.use(
       error.response.status === 400 &&
       error.response.data.errorMessage === '중복아이디입니다.'
     ) {
-      alert('중복아이디입니다.');
+      Swal.fire({
+        text: '중복 아이디입니다.',
+        width: '360px',
+        confirmButtonColor: '#E3344E',
+      });
       window.location.href = '/signup';
     }
     return error;

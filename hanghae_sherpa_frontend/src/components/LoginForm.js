@@ -4,6 +4,7 @@ import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import { Text, Grid, Input, Button } from '../elements';
 import { userCreators } from '../redux/modules/user';
+import Swal from 'sweetalert2';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -11,17 +12,17 @@ const LoginForm = () => {
 
   const [userId, setUserId] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const [submit, setSubmit] = React.useState(false);
 
   const RegExUserId = /^[a-zA-Z0-9!@#$%^&*]{4,12}$/;
   const RegExPassword = /^[a-zA-Z0-9!@#$%^&*]{6,18}$/;
 
   const login = () => {
-    setSubmit(true);
-
     if (userId === '' || password === '') {
-      window.alert('아이디 혹은 비밀번호가 공란입니다! 입력해주세요!');
-      return;
+      return Swal.fire({
+        text: '아이디 혹은 비밀번호가 공란입니다! 입력해주세요!',
+        width: '360px',
+        confirmButtonColor: '#E3344E',
+      });
     }
 
     console.log(RegExUserId.test(userId));
@@ -31,9 +32,11 @@ const LoginForm = () => {
       RegExUserId.test(userId) === false ||
       RegExPassword.test(password) === false
     ) {
-      // console.log(RegExUserId.test(userId));
-      // console.log(RegExUserId.test(password));
-      return;
+      return Swal.fire({
+        text: '아이디 혹은 비밀번호가 양식에 맞지 않습니다!',
+        width: '360px',
+        confirmButtonColor: '#E3344E',
+      });
     }
     const loginInfo = {
       userId: userId,
@@ -41,15 +44,12 @@ const LoginForm = () => {
     };
     console.log(loginInfo);
     dispatch(userCreators.loginMiddleware(loginInfo));
-    // history.push('/main');
   };
 
   return (
     <React.Fragment>
       <Grid>
-        <Title size='20px' bold text-align='center'>
-          로그인
-        </Title>
+        <Image src='https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbkHzp7%2FbtrhTSkFWHl%2FGSfYQx3P6AQ6IOUN9eKBtk%2Fimg.jpg' />
         <Grid padding='16px 0px'>
           <Input
             label='아이디'
@@ -59,7 +59,7 @@ const LoginForm = () => {
             }}
           />
         </Grid>
-        {submit && RegExUserId.test(userId) === false ? (
+        {userId.length >= 4 && RegExUserId.test(userId) === false ? (
           <Text color='red' size='12px'>
             Id를 다시 입력해주세요
           </Text>
@@ -77,7 +77,7 @@ const LoginForm = () => {
             }}
           />
         </Grid>
-        {submit && RegExPassword.test(password) === false ? (
+        {password.length >= 6 && RegExPassword.test(password) === false ? (
           <Text color='red' size='12px'>
             Password를 다시 입력해주세요
           </Text>
@@ -113,6 +113,11 @@ const Title = styled.div`
   font-weight: 600;
   display: inline-flex;
   justify-content: center;
+`;
+
+const Image = styled.img`
+  width: 330px;
+  height: 200px;
 `;
 
 export default LoginForm;
