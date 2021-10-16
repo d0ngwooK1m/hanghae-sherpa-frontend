@@ -153,22 +153,22 @@ export default handleActions(
       produce(state, (draft) => {
         console.log(action.payload.data);
         draft.data = action.payload.data;
-        if (draft.is_updated === true) {
-          draft.is_updated = false;
-        }
+        // if (draft.is_updated === true) {
+        //   draft.is_updated = false;
+        // }
       }),
     [GET_MYPAGE_GRAPH]: (state, action) =>
       produce(state, (draft) => {
         draft.mypage_data = action.payload.data;
-        if (draft.is_updated === true) {
-          draft.is_updated = false;
-        }
+        // if (draft.is_updated === true) {
+        //   draft.is_updated = false;
         draft.todo_num = action.payload.num;
       }),
     [ADD_GRAPH_INFO]: (state, action) =>
       produce(state, (draft) => {
         console.log(draft.is_updated);
-        draft.is_updated = true;
+        draft.data = action.payload.data;
+        // draft.is_updated = true;
       }),
     [UPDATE_DATE]: (state, action) =>
       produce(state, (draft) => {
