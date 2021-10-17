@@ -86,7 +86,7 @@ database: mysql (sequelize)
 
 ## DB diagram
 
-![DB최종](/readmeImg/DB최종.png)
+![DB최종](/readmeImg/DB최종.PNG)
 
 ## 1. 컴포넌트 만들기
 
