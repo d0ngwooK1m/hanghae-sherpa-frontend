@@ -173,7 +173,6 @@ const SignupForm = () => {
             margin='0px 5px 0px 0px'
             text='회원가입'
             _onClick={() => {
-              console.log(userId, password, nickname, passwordCheck);
               signup();
             }}
           ></Button>
